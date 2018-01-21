@@ -1,6 +1,6 @@
 [package]
 name = "ArmorLib"
 version = "0.1.0"
-authors = ["Miles McCain <milesmcc@users.noreply.github.com>"]
+authors = ["Miles McCain <libre@rmrm.io>"]
 
 [dependencies]
