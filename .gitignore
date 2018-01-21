@@ -11,3 +11,6 @@ Cargo.lock
 /target/
 **/*.rs.bk
 Cargo.lock
+
+# For the mac users
+.DS_Store
