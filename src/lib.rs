@@ -1,3 +1,5 @@
+mod coordinator;
+
 #[cfg(test)]
 mod tests {
     #[test]
