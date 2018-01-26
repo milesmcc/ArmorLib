@@ -3,11 +3,11 @@ name = "ArmorLib"
 description = "Easily scan files for threats to security and privacy."
 version = "0.1.0"
 authors = ["Miles McCain <libre@rmrm.io>"]
-readme = "README.MD"
+readme = "README.md"
 license = "Apache-2.0"
 keywords = ["os", "security", "steganography", "malware"]
 categories = ["command-line-utilities", "os", "filesystem"]
 repository = "https://github.com/milesmcc/ArmorLib"
 
 [dependencies]
-serde_json = "1.0"
+serde = "1.0"

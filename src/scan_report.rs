@@ -1,4 +1,6 @@
-extern crate serde_json;
+extern crate serde;
+
+use self::serde::de::DeserializeOwned;
 
 enum Severity {
     /// there is no issue with the data
@@ -15,14 +17,14 @@ enum Severity {
 }
 
 pub struct Finding {
-    title: &str,
-    id: &str,
-    description: &str,
+    title: String,
+    id: String,
+    description: String,
     status: Severity,
-    data: Encodable
+    data: DeserializeOwned,
 }
 
 pub struct ScanReport {
-    module_name: &str,
+    module_name: String,
     findings: Vec<Finding>
 }
