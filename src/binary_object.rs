@@ -1,9 +1,9 @@
 use std::path::Path;
 
-struct BinaryObject {
+pub struct BinaryObject {
     file_path: Path
 }
 
-trait BinaryObject {
+pub trait BinaryObjectReader {
     fn read_data(); // TODO
 }

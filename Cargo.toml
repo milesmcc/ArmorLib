@@ -4,3 +4,4 @@ version = "0.1.0"
 authors = ["Miles McCain <libre@rmrm.io>"]
 
 [dependencies]
+serde_json = "1.0"

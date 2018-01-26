@@ -1,6 +1,4 @@
-extern crate rustc_serialize;
-
-use rustc_serialize::Encodable;
+extern crate serde_json;
 
 enum Severity {
     /// there is no issue with the data
@@ -16,15 +14,15 @@ enum Severity {
     Severe
 }
 
-struct Finding {
+pub struct Finding {
     title: &str,
-    type: &str,
+    id: &str,
     description: &str,
     status: Severity,
-    data: <T: Encodable>
+    data: Encodable
 }
 
-struct ScanReport {
+pub struct ScanReport {
     module_name: &str,
     findings: Vec<Finding>
 }
