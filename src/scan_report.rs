@@ -16,14 +16,16 @@ enum Severity {
     Severe
 }
 
+#[derive(Debug)]
 pub struct Finding {
     title: String,
     id: String,
     description: String,
     status: Severity,
-    data: T: DeserializeOwned,
+    data: DeserializeOwned,
 }
 
+#[derive(Debug)]
 pub struct ScanReport {
     module_name: String,
     findings: Vec<Finding>
