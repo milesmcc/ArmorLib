@@ -21,7 +21,7 @@ pub struct Finding {
     id: String,
     description: String,
     status: Severity,
-    data: DeserializeOwned,
+    data: T: DeserializeOwned,
 }
 
 pub struct ScanReport {

@@ -1,9 +1,9 @@
-mod coordinator;
-mod binary_object;
-mod scan_module;
-mod scan_object;
-mod scan_report;
-mod scan_result;
+pub mod coordinator;
+pub mod binary_object;
+pub mod scan_module;
+pub mod scan_object;
+pub mod scan_report;
+pub mod scan_result;
 
 #[cfg(test)]
 mod tests {
