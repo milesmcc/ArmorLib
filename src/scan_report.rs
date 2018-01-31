@@ -1,6 +1,5 @@
-extern crate serde;
-
-use self::serde::de::DeserializeOwned;
+use serde::de::DeserializeOwned;
+use std::fmt;
 
 enum Severity {
     /// there is no issue with the data
@@ -16,13 +15,25 @@ enum Severity {
     Severe
 }
 
+impl fmt::Debug for Severity {
+    fn fmt(&self, f: &mut Formatter) -> Result<(), Error>{
+        match self {
+            Ok => Some("Ok"),
+            Warn => Some("Warn"),
+            Danger => Some("Danger"),
+            Severe => Some("Severe"),
+            _ => None
+        }
+    }
+}
+
 #[derive(Debug)]
 pub struct Finding {
     title: String,
     id: String,
     description: String,
     status: Severity,
-    data: DeserializeOwned,
+    // data: T<DeserializeOwned>
 }
 
 #[derive(Debug)]
