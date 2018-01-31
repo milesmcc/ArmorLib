@@ -5,6 +5,10 @@ pub struct BinaryObject {
     file_path: Path
 }
 
+impl std::convert::From for BinaryObject {
+    
+}
+
 pub trait BinaryObjectReader {
     fn read_data(); // TODO
 }
