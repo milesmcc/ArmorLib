@@ -16,12 +16,12 @@ enum Severity {
 }
 
 impl fmt::Debug for Severity {
-    fn fmt(&self, f: &mut Formatter) -> Result<(), Error>{
+    fn fmt(&Severity, f: &mut fmt::Formatter<'_>) -> Result<String, fmt::Error>{
         match self {
-            Ok => Some("Ok"),
-            Warn => Some("Warn"),
-            Danger => Some("Danger"),
-            Severe => Some("Severe"),
+            &Severity::Ok => Some("Ok"),
+            &Severity::Warn => Some("Warn"),
+            &Severity::Danger => Some("Danger"),
+            &Severity::Severe => Some("Severe"),
             _ => None
         }
     }
