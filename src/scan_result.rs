@@ -1,6 +1,6 @@
 use scan_report::ScanReport;
 
 #[derive(Debug)]
-struct ScanResult {
+pub struct ScanResult {
     results: Vec<ScanReport>
 }
