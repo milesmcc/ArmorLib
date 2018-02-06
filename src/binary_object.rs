@@ -1,9 +1,11 @@
 use std::path::Path;
 use std::convert::From;
+use std::io::Bytes;
+use std::io::Read;
 
 #[derive(Debug)]
 pub struct BinaryObject {
-    file_path: Path
+    bytes: Read,
 }
 
 pub trait BinaryObjectReader {
