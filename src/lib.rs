@@ -7,6 +7,7 @@ pub mod scan_object;
 pub mod scan_report;
 pub mod scan_result;
 pub mod finding;
+pub mod errors;
 
 #[cfg(test)]
 mod tests {

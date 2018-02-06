@@ -9,7 +9,8 @@ pub struct Finding {
     // data: T<DeserializeOwned>
 }
 
-enum Severity {
+#[derive(Debug)]
+pub enum Severity {
     /// there is no issue with the data
     Ok(String),
 
@@ -21,16 +22,4 @@ enum Severity {
 
     /// the data has a problem which will surely compromise security or privacy
     Severe(String)
-}
-
-impl fmt::Debug for Severity {
-    fn fmt(self: &Severity, formatter: &mut fmt::Formatter) -> Result<String, fmt::Error>{
-        match severity {
-            &Severity::Ok => Some("Ok"),
-            &Severity::Warn => Some("Warn"),
-            &Severity::Danger => Some("Danger"),
-            &Severity::Severe => Some("Severe"),
-            _ => None
-        }
-    }
 }
