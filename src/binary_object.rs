@@ -1,12 +1,9 @@
 use std::path::Path;
+use std::convert::From;
 
 #[derive(Debug)]
 pub struct BinaryObject {
     file_path: Path
-}
-
-impl std::convert::From for BinaryObject {
-    
 }
 
 pub trait BinaryObjectReader {

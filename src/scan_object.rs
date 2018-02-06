@@ -3,6 +3,6 @@ use binary_object::BinaryObject;
 
 #[derive(Debug)]
 pub struct ScanObject {
-    metadata: HashMap<String, String>,
+    metadata: HashMap<String, HashMap<String, String>>,
     binary_object: BinaryObject,
 }
