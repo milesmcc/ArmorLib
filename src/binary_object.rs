@@ -1,6 +1,7 @@
 use std::io::Read;
 
+#[derive(Copy)]
 pub struct BinaryObject {
-    file_name: Option<String>,
-    bytes: Read
+    pub file_name: Option<String>,
+    pub data: Read
 }

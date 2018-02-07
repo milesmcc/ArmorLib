@@ -8,6 +8,8 @@ pub mod finding;
 pub mod errors;
 pub mod preprocessor;
 
+pub mod preprocessors;
+
 #[cfg(test)]
 mod tests {
     #[test]
