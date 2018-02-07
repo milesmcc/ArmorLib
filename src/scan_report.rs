@@ -1,5 +1,4 @@
 use finding::Finding;
-use serde;
 
 #[derive(Debug)]
 pub struct ScanReport {
