@@ -1,9 +1,8 @@
-use serde::de::DeserializeOwned;
-use std::fmt;
-use finding;
+use finding::Finding;
+use serde;
 
 #[derive(Debug)]
 pub struct ScanReport {
     module_name: String,
-    findings: Vec<finding::Finding>
+    findings: Vec<Finding>
 }

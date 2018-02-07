@@ -1,12 +1,9 @@
-use std::fmt;
-
 #[derive(Debug)]
 pub struct Finding {
     title: String,
     id: String,
     description: String,
-    status: Severity,
-    // data: T<DeserializeOwned>
+    status: Severity
 }
 
 #[derive(Debug)]

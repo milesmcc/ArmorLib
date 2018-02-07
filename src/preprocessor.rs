@@ -1,6 +1,7 @@
-use scan_object::ScanObject;
 use std::collections::HashMap;
+use binary_object::BinaryObject;
 
-trait Preprocessor {
+pub trait Preprocessor {
     fn process(binary_object: &BinaryObject) -> HashMap<String, String>;
+    fn name() -> &'static str;
 }

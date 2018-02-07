@@ -1,5 +1,5 @@
 [package]
-name = "ArmorLib"
+name = "armorlib"
 description = "Easily scan files for threats to security and privacy."
 version = "0.1.0"
 authors = ["Miles McCain <libre@rmrm.io>"]
