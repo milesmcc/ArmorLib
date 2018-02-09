@@ -12,6 +12,8 @@ pub mod preprocessor;
 
 pub mod preprocessors;
 
+mod util;
+
 #[cfg(test)]
 mod tests {
     #[test]
