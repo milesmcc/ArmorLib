@@ -3,9 +3,11 @@ pub struct BinaryObject {
     pub data: Vec<u8>
 }
 
-fn from(data: Vec<u8>) -> BinaryObject {
-    BinaryObject {
-        file_name: None,
-        data: data
+impl From<Vec<u8>> for BinaryObject {
+    fn from(data: Vec<u8>) -> BinaryObject {
+        BinaryObject {
+            file_name: None,
+            data: data
+        }
     }
 }
