@@ -49,6 +49,17 @@ impl Encoding {
 
         Encoding::Binary
     }
+
+    pub fn filetype_representation(&self) -> &str {
+        match self {
+            &Encoding::Ascii => "*ascii",
+            &Encoding::Binary => "*binary",
+            &Encoding::NoData => "*nodata",
+            &Encoding::Utf16 => "*utf16",
+            &Encoding::Utf32 => "*utf32",
+            &Encoding::Utf8 => "*utf8"
+        }
+    }
 }
 
 fn determine_file_types(binary_object: &BinaryObject) -> Vec<String> {
@@ -90,12 +101,14 @@ mod tests {
                                                               0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8,
                                                               0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8, 0x0_u8]);
             assert_eq!(Encoding::determine_encoding(&binary_object_utf32), Encoding::Utf32);
+            assert_eq!(Encoding::determine_encoding(&binary_object_utf32).filetype_representation(), "*utf32");
         }
 
         // test no data
         {
             let binary_object_no_data: BinaryObject = BinaryObject::from(vec![]);
             assert_eq!(Encoding::determine_encoding(&binary_object_no_data), Encoding::NoData);
+            assert_eq!(Encoding::determine_encoding(&binary_object_no_data).filetype_representation(), "*nodata");
         }
 
         // test ascii
@@ -104,6 +117,7 @@ mod tests {
                                                                             86_u8, 98_u8, 86_u8,
                                                                             98_u8, 86_u8]);
             assert_eq!(Encoding::determine_encoding(&binary_object_ascii), Encoding::Ascii);
+            assert_eq!(Encoding::determine_encoding(&binary_object_ascii).filetype_representation(), "*ascii");
         }
 
         // test utf8
@@ -111,12 +125,14 @@ mod tests {
             let binary_object_utf8: BinaryObject = BinaryObject::from(vec![0xEF_u8, 0xBB_u8,
                                                                            0xBF_u8, 0x00_u8]);
             assert_eq!(Encoding::determine_encoding(&binary_object_utf8), Encoding::Utf8);
+            assert_eq!(Encoding::determine_encoding(&binary_object_utf8).filetype_representation(), "*utf8");
         }
 
         // test utf16
         {
             let binary_object_utf16: BinaryObject = BinaryObject::from(vec![0xFF_u8, 0xFE_u8, 0x00_u8, 0x00_u8]);
             assert_eq!(Encoding::determine_encoding(&binary_object_utf16), Encoding::Utf16);
+            assert_eq!(Encoding::determine_encoding(&binary_object_utf16).filetype_representation(), "*utf16");
         }
     }
 }
