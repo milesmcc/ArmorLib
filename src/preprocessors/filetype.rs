@@ -123,7 +123,7 @@ impl Encoding {
 }
 
 fn do_bytes_match(pattern: &str, bytes: &[u8]) -> bool {
-    let pattern = String::from(pattern).replace(" ", "");
+    let pattern = String::from(pattern);
     let pattern_hex: Vec<&str> = pattern.split(" ").collect();
     if pattern_hex.len() > bytes.len() {
         return false;
@@ -133,7 +133,7 @@ fn do_bytes_match(pattern: &str, bytes: &[u8]) -> bool {
         if pat == String::from("??") { // TODO: optimize
             continue;
         }
-        let byte_str = format!("{:X}", bytes[index]);
+        let byte_str = format!("{:02X}", bytes[index]);
         if String::from(byte_str) != pat { // TODO: optimize
             return false;
         }
