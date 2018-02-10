@@ -1,4 +1,5 @@
 # ArmorLib
+[![Build Status](https://travis-ci.org/milesmcc/ArmorLib.svg?branch=master)](https://travis-ci.org/milesmcc/ArmorLib)
 Easily scan files for threats to security and privacy. Available as a Rust crate or as a command-line utility.
 
 **ArmorLib is currently under heavy development.**
