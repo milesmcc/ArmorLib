@@ -9,7 +9,6 @@ use util;
 struct TextPreprocessor;
 
 impl Preprocessor for TextPreprocessor {
-
     /// Creates two fields: encoding and text
     /// TODO: improve documentation
     fn process(binary_object: &BinaryObject) -> HashMap<String, String> {
@@ -37,7 +36,7 @@ pub enum Encoding {
     Utf16,
     Utf32,
     NoData,
-    Binary
+    Binary,
 }
 
 impl Encoding {
@@ -47,7 +46,7 @@ impl Encoding {
             &Encoding::Utf8 => true,
             &Encoding::Utf16 => true,
             &Encoding::Utf32 => true,
-            _ => false
+            _ => false,
         }
     }
 
@@ -94,13 +93,13 @@ impl Encoding {
 
                 let mut u8s: Vec<u16> = Vec::new();
                 for i in 0..len {
-                    let index = 2*i;
+                    let index = 2 * i;
                     let u = util::u8s_to_u16(data_slice[index], data_slice[index + 1]);
                     u8s.push(u);
                 }
 
                 return String::from_utf16_lossy(u8s.as_slice());
-            },
+            }
             &Encoding::Utf32 => {
                 let mut len = data.len();
                 if len % 4 != 0 {
@@ -110,78 +109,141 @@ impl Encoding {
 
                 let mut string = String::new();
                 for i in 0..len {
-                    let index = 4*i;
-                    let u = util::u8s_to_u32(data_slice[index], data_slice[index + 1], data_slice[index + 2], data_slice[index + 3]);
+                    let index = 4 * i;
+                    let u = util::u8s_to_u32(
+                        data_slice[index],
+                        data_slice[index + 1],
+                        data_slice[index + 2],
+                        data_slice[index + 3],
+                    );
                     match char::from_u32(u) {
                         Some(character) => string.push(character),
-                        None => continue,
+                        None => string.push('�'),
                     }
                 }
                 string
-            },
-            _ => String::from_utf8_lossy(data_slice).to_string()
-            // binaries and other files may contain utf8 data, as well as utf8 itself
+            }
+            _ => String::from_utf8_lossy(data_slice).to_string(), // binaries and other files may contain utf8 data, as well as utf8 itself
         }
     }
 }
 
 impl From<Encoding> for String {
     fn from(encoding: Encoding) -> String {
-        String::from(
-            match encoding {
-                Encoding::Ascii => "ascii",
-                Encoding::Binary => "binary",
-                Encoding::NoData => "nodata",
-                Encoding::Utf16 => "utf16",
-                Encoding::Utf32 => "utf32",
-                Encoding::Utf8 => "utf8"
-            }
-        )
+        String::from(match encoding {
+            Encoding::Ascii => "ascii",
+            Encoding::Binary => "binary",
+            Encoding::NoData => "nodata",
+            Encoding::Utf16 => "utf16",
+            Encoding::Utf32 => "utf32",
+            Encoding::Utf8 => "utf8",
+        })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use ::preprocessors::text::*;
+    use preprocessors::text::*;
 
-    use ::binary_object::BinaryObject;
-    use ::util;
+    use binary_object::BinaryObject;
+    use util;
+
+    #[test]
+    fn test_utf8_extraction() {
+        let text = "Dr. Z requires tests, and so do I";
+        let utf8_bytes: Vec<u8> = text.bytes().collect();
+        let utf8_object = BinaryObject::from(utf8_bytes);
+        assert_eq!(
+            Encoding::determine_encoding(&utf8_object).extract_text(&utf8_object),
+            String::from(text)
+        );
+    }
+
+    #[test]
+    fn test_utf16_extraction() {
+        let text = "Dr. Z requires tests, and so do I";
+        let utf16_bytes: Vec<u8> = vec![
+            0x44_u8, 0x72_u8, 0x2e_u8, 0x20_u8, 0x5a_u8, 0x20_u8, 0x72_u8, 0x65_u8, 0x71_u8,
+            0x75_u8, 0x69_u8, 0x72_u8, 0x65_u8, 0x73_u8, 0x20_u8, 0x74_u8, 0x65_u8, 0x73_u8,
+            0x74_u8, 0x73_u8, 0x2c_u8, 0x20_u8, 0x61_u8, 0x6e_u8, 0x64_u8, 0x20_u8, 0x73_u8,
+            0x6f_u8, 0x20_u8, 0x64_u8, 0x6f_u8, 0x20_u8, 0x49_u8,
+        ];
+        let utf16_bytes = BinaryObject::from(utf16_bytes);
+        assert_eq!(
+            Encoding::determine_encoding(&utf16_bytes).extract_text(&utf16_bytes),
+            String::from(text)
+        );
+    }
 
     #[test]
     fn test_determine_encoding() {
         // test utf32
         {
-            let binary_object_utf32: BinaryObject = BinaryObject::from(util::hex_to_vec("FF FE 00 00 00 00 00").unwrap());
-            assert_eq!(Encoding::determine_encoding(&binary_object_utf32), Encoding::Utf32);
-            assert_eq!(String::from(Encoding::determine_encoding(&binary_object_utf32)), "utf32");
+            let binary_object_utf32: BinaryObject =
+                BinaryObject::from(util::hex_to_vec("FF FE 00 00 00 00 00").unwrap());
+            assert_eq!(
+                Encoding::determine_encoding(&binary_object_utf32),
+                Encoding::Utf32
+            );
+            assert_eq!(
+                String::from(Encoding::determine_encoding(&binary_object_utf32)),
+                "utf32"
+            );
         }
 
         // test no data
         {
             let binary_object_no_data: BinaryObject = BinaryObject::from(vec![]);
-            assert_eq!(Encoding::determine_encoding(&binary_object_no_data), Encoding::NoData);
-            assert_eq!(String::from(Encoding::determine_encoding(&binary_object_no_data)), "nodata");
+            assert_eq!(
+                Encoding::determine_encoding(&binary_object_no_data),
+                Encoding::NoData
+            );
+            assert_eq!(
+                String::from(Encoding::determine_encoding(&binary_object_no_data)),
+                "nodata"
+            );
         }
 
         // test ascii
         {
-            let binary_object_ascii: BinaryObject = BinaryObject::from(util::hex_to_vec("33 33 33 33 33 33 34 32 12 34").unwrap());
-            assert_eq!(Encoding::determine_encoding(&binary_object_ascii), Encoding::Ascii);
-            assert_eq!(String::from(Encoding::determine_encoding(&binary_object_ascii)), "ascii");
+            let binary_object_ascii: BinaryObject =
+                BinaryObject::from(util::hex_to_vec("33 33 33 33 33 33 34 32 12 34").unwrap());
+            assert_eq!(
+                Encoding::determine_encoding(&binary_object_ascii),
+                Encoding::Ascii
+            );
+            assert_eq!(
+                String::from(Encoding::determine_encoding(&binary_object_ascii)),
+                "ascii"
+            );
         }
 
         // test utf8
         {
-            let binary_object_utf8: BinaryObject = BinaryObject::from(util::hex_to_vec("EF BB BF 00").unwrap());
-            assert_eq!(Encoding::determine_encoding(&binary_object_utf8), Encoding::Utf8);
-            assert_eq!(String::from(Encoding::determine_encoding(&binary_object_utf8)), "utf8");
+            let binary_object_utf8: BinaryObject =
+                BinaryObject::from(util::hex_to_vec("EF BB BF 00").unwrap());
+            assert_eq!(
+                Encoding::determine_encoding(&binary_object_utf8),
+                Encoding::Utf8
+            );
+            assert_eq!(
+                String::from(Encoding::determine_encoding(&binary_object_utf8)),
+                "utf8"
+            );
         }
 
         // test utf16
         {
-            let binary_object_utf16: BinaryObject = BinaryObject::from(util::hex_to_vec("FF FE 00 00").unwrap());
-            assert_eq!(Encoding::determine_encoding(&binary_object_utf16), Encoding::Utf16);
-            assert_eq!(String::from(Encoding::determine_encoding(&binary_object_utf16)), "utf16");
+            let binary_object_utf16: BinaryObject =
+                BinaryObject::from(util::hex_to_vec("FF FE 00 00").unwrap());
+            assert_eq!(
+                Encoding::determine_encoding(&binary_object_utf16),
+                Encoding::Utf16
+            );
+            assert_eq!(
+                String::from(Encoding::determine_encoding(&binary_object_utf16)),
+                "utf16"
+            );
         }
     }
 }
