@@ -3,7 +3,7 @@ pub struct Finding {
     title: String,
     id: String,
     description: String,
-    status: Severity
+    status: Severity,
 }
 
 #[derive(Debug)]
@@ -18,5 +18,5 @@ pub enum Severity {
     Danger(String),
 
     /// the data has a problem which will surely compromise security or privacy
-    Severe(String)
+    Severe(String),
 }

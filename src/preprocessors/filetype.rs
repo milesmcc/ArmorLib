@@ -71,11 +71,13 @@ fn do_bytes_match(pattern: &str, bytes: &[u8]) -> bool {
     }
     for (index, pat_str) in pattern_hex.iter().enumerate() {
         let pat = String::from(*pat_str);
-        if pat == String::from("??") { // TODO: optimize
+        if pat == String::from("??") {
+            // TODO: optimize
             continue;
         }
         let byte_str = format!("{:02X}", bytes[index]);
-        if String::from(byte_str) != pat { // TODO: optimize
+        if String::from(byte_str) != pat {
+            // TODO: optimize
             return false;
         }
     }
@@ -102,14 +104,13 @@ fn determine_file_types(binary_object: &BinaryObject) -> Vec<String> {
 }
 
 impl Preprocessor for FiletypePrepreprocessor {
-
     /// Returns a map where the keys are file types (without the leading `.`).
     /// Values are not currently used.
     fn process(binary_object: &BinaryObject) -> HashMap<String, String> {
         let mut map: HashMap<String, String> = HashMap::new();
         for filetype in determine_file_types(binary_object).iter() {
             map.insert(filetype.clone(), String::from(""));
-        };
+        }
         map
     }
 
@@ -120,19 +121,25 @@ impl Preprocessor for FiletypePrepreprocessor {
 
 #[cfg(test)]
 mod tests {
-    use ::preprocessors::filetype::*;
-    use ::binary_object::BinaryObject;
+    use preprocessors::filetype::*;
+    use binary_object::BinaryObject;
 
-    use ::util::hex_to_vec;
+    use util::hex_to_vec;
 
     #[test]
     fn test_filetype_detection() {
-        println!("{:?}", determine_file_types(&BinaryObject::from(hex_to_vec(
-            "52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF"
-        ).unwrap())));
+        println!(
+            "{:?}",
+            determine_file_types(&BinaryObject::from(
+                hex_to_vec("52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF").unwrap()
+            ))
+        );
         // test rar
-        assert!(determine_file_types(&BinaryObject::from(hex_to_vec(
-            "52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF"
-        ).unwrap())).iter().any(|x| x == &String::from("rar")));
+        assert!(
+            determine_file_types(&BinaryObject::from(
+                hex_to_vec("52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF").unwrap()
+            )).iter()
+                .any(|x| x == &String::from("rar"))
+        );
     }
 }

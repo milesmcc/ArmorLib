@@ -28,17 +28,20 @@ pub fn u8s_to_u32(first: u8, second: u8, third: u8, fourth: u8) -> u32 {
 
 #[cfg(test)]
 mod tests {
-    use ::util::{hex_to_vec, u8s_to_u16, u8s_to_u32};
+    use util::{hex_to_vec, u8s_to_u16, u8s_to_u32};
 
     #[test]
     fn test_hex_to_vec() {
-        assert_eq!(hex_to_vec("00 00 01 00 BA 3C 2B A9").unwrap(),
-                  [0x00_u8, 0x00_u8, 0x01_u8, 0x00_u8,
-                   0xBA_u8, 0x3C_u8, 0x2B_u8, 0xA9_u8]);
+        assert_eq!(
+            hex_to_vec("00 00 01 00 BA 3C 2B A9").unwrap(),
+            [
+                0x00_u8, 0x00_u8, 0x01_u8, 0x00_u8, 0xBA_u8, 0x3C_u8, 0x2B_u8, 0xA9_u8
+            ]
+        );
 
         match hex_to_vec("invalid HEX string") {
             Ok(_) => assert!(false),
-            Err(_) => assert!(true)
+            Err(_) => assert!(true),
         }
     }
 
