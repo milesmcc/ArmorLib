@@ -127,19 +127,24 @@ mod tests {
     use util::hex_to_vec;
 
     #[test]
-    fn test_filetype_detection() {
-        println!(
-            "{:?}",
-            determine_file_types(&BinaryObject::from(
-                hex_to_vec("52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF").unwrap()
-            ))
-        );
+    fn test_filetype_detection_rar() {
         // test rar
         assert!(
             determine_file_types(&BinaryObject::from(
                 hex_to_vec("52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF").unwrap()
             )).iter()
                 .any(|x| x == &String::from("rar"))
+        );
+    }
+
+    #[test]
+    fn test_filetype_detection_avi() {
+        // test avi
+        assert!(
+            determine_file_types(&BinaryObject::from(
+                hex_to_vec("52 49 46 46 FF FF FF FF 41 56 49 20").unwrap()
+            )).iter()
+                .any(|x| x == &String::from("avi"))
         );
     }
 }
