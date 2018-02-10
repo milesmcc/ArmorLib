@@ -1,5 +1,3 @@
-#[macro_use] use maplit;
-
 use std::collections::HashMap;
 use std::u8;
 
@@ -131,10 +129,10 @@ mod tests {
     fn test_filetype_detection() {
         println!("{:?}", determine_file_types(&BinaryObject::from(hex_to_vec(
             "52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF"
-        ))));
+        ).unwrap())));
         // test rar
         assert!(determine_file_types(&BinaryObject::from(hex_to_vec(
             "52 61 72 21 1A 07 01 00 23 9B 4B C9 FF E4 FF F1 CF"
-        ))).iter().any(|x| x == &String::from("rar")));
+        ).unwrap())).iter().any(|x| x == &String::from("rar")));
     }
 }
