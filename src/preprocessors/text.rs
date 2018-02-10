@@ -162,12 +162,7 @@ mod tests {
     #[test]
     fn test_utf16_extraction() {
         let text = "Dr. Z requires tests, and so do I";
-        let utf16_bytes: Vec<u8> = vec![
-            0x44_u8, 0x72_u8, 0x2e_u8, 0x20_u8, 0x5a_u8, 0x20_u8, 0x72_u8, 0x65_u8, 0x71_u8,
-            0x75_u8, 0x69_u8, 0x72_u8, 0x65_u8, 0x73_u8, 0x20_u8, 0x74_u8, 0x65_u8, 0x73_u8,
-            0x74_u8, 0x73_u8, 0x2c_u8, 0x20_u8, 0x61_u8, 0x6e_u8, 0x64_u8, 0x20_u8, 0x73_u8,
-            0x6f_u8, 0x20_u8, 0x64_u8, 0x6f_u8, 0x20_u8, 0x49_u8,
-        ];
+        let utf16_bytes: Vec<u8> = util::hex_to_vec("44 72 2e 20 5a 20 72 65 71 75 69 72 65 73 20 74 65 73 74 73 2c 20 61 6e 64 20 73 6f 20 64 6f 20 49").unwrap();
         let utf16_bytes = BinaryObject::from(utf16_bytes);
         assert_eq!(
             Encoding::determine_encoding(&utf16_bytes).extract_text(&utf16_bytes),
