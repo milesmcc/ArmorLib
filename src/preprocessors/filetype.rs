@@ -138,11 +138,11 @@ mod tests {
     }
 
     #[test]
-    fn test_filetype_detection_avi() {
+    fn test_filetype_detection_avi() { // this is important, as it tests the `??` functionality
         // test avi
         assert!(
             determine_file_types(&BinaryObject::from(
-                hex_to_vec("52 49 46 46 FF FF FF FF 41 56 49 20").unwrap()
+                hex_to_vec("52 49 46 46 FF C6 FF FF 41 56 49 20").unwrap()
             )).iter()
                 .any(|x| x == &String::from("avi"))
         );
