@@ -172,13 +172,6 @@ mod tests {
 
     // #[test] // TODO
     // fn test_utf32_extraction() {
-    //     let text = "Dr. Z requires tésts, and so dü I";
-    //     let utf16_bytes: Vec<u8> = util::hex_to_vec("TODO").unwrap();
-    //     let utf16_bytes = BinaryObject::from(utf16_bytes);
-    //     assert_eq!(
-    //         Encoding::determine_encoding(&utf16_bytes).extract_text(&utf16_bytes),
-    //         String::from(text)
-    //     );
     // }
     //
 
