@@ -171,74 +171,76 @@ mod tests {
     }
 
     #[test]
-    fn test_determine_encoding() {
+    fn test_determine_encoding_utf32() {
         // test utf32
-        {
-            let binary_object_utf32: BinaryObject =
-                BinaryObject::from(util::hex_to_vec("FF FE 00 00 00 00 00").unwrap());
-            assert_eq!(
-                Encoding::determine_encoding(&binary_object_utf32),
-                Encoding::Utf32
-            );
-            assert_eq!(
-                String::from(Encoding::determine_encoding(&binary_object_utf32)),
-                "utf32"
-            );
-        }
+        let binary_object_utf32: BinaryObject =
+            BinaryObject::from(util::hex_to_vec("FF FE 00 00 00 00 00").unwrap());
+        assert_eq!(
+            Encoding::determine_encoding(&binary_object_utf32),
+            Encoding::Utf32
+        );
+        assert_eq!(
+            String::from(Encoding::determine_encoding(&binary_object_utf32)),
+            "utf32"
+        );
+    }
 
+    #[test]
+    fn test_determine_encoding_nodata() {
         // test no data
-        {
-            let binary_object_no_data: BinaryObject = BinaryObject::from(vec![]);
-            assert_eq!(
-                Encoding::determine_encoding(&binary_object_no_data),
-                Encoding::NoData
-            );
-            assert_eq!(
-                String::from(Encoding::determine_encoding(&binary_object_no_data)),
-                "nodata"
-            );
-        }
+        let binary_object_no_data: BinaryObject = BinaryObject::from(vec![]);
+        assert_eq!(
+            Encoding::determine_encoding(&binary_object_no_data),
+            Encoding::NoData
+        );
+        assert_eq!(
+            String::from(Encoding::determine_encoding(&binary_object_no_data)),
+            "nodata"
+        );
+    }
 
+    #[test]
+    fn test_determine_encoding_ascii() {
         // test ascii
-        {
-            let binary_object_ascii: BinaryObject =
-                BinaryObject::from(util::hex_to_vec("33 33 33 33 33 33 34 32 12 34").unwrap());
-            assert_eq!(
-                Encoding::determine_encoding(&binary_object_ascii),
-                Encoding::Ascii
-            );
-            assert_eq!(
-                String::from(Encoding::determine_encoding(&binary_object_ascii)),
-                "ascii"
-            );
-        }
+        let binary_object_ascii: BinaryObject =
+            BinaryObject::from(util::hex_to_vec("33 33 33 33 33 33 34 32 12 34").unwrap());
+        assert_eq!(
+            Encoding::determine_encoding(&binary_object_ascii),
+            Encoding::Ascii
+        );
+        assert_eq!(
+            String::from(Encoding::determine_encoding(&binary_object_ascii)),
+            "ascii"
+        );
+    }
 
+    #[test]
+    fn test_determine_encoding_utf8() {
         // test utf8
-        {
-            let binary_object_utf8: BinaryObject =
-                BinaryObject::from(util::hex_to_vec("EF BB BF 00").unwrap());
-            assert_eq!(
-                Encoding::determine_encoding(&binary_object_utf8),
-                Encoding::Utf8
-            );
-            assert_eq!(
-                String::from(Encoding::determine_encoding(&binary_object_utf8)),
-                "utf8"
-            );
-        }
+        let binary_object_utf8: BinaryObject =
+            BinaryObject::from(util::hex_to_vec("EF BB BF 00").unwrap());
+        assert_eq!(
+            Encoding::determine_encoding(&binary_object_utf8),
+            Encoding::Utf8
+        );
+        assert_eq!(
+            String::from(Encoding::determine_encoding(&binary_object_utf8)),
+            "utf8"
+        );
+    }
 
+    #[test]
+    fn test_determine_encoding_utf16() {
         // test utf16
-        {
-            let binary_object_utf16: BinaryObject =
-                BinaryObject::from(util::hex_to_vec("FF FE 00 00").unwrap());
-            assert_eq!(
-                Encoding::determine_encoding(&binary_object_utf16),
-                Encoding::Utf16
-            );
-            assert_eq!(
-                String::from(Encoding::determine_encoding(&binary_object_utf16)),
-                "utf16"
-            );
-        }
+        let binary_object_utf16: BinaryObject =
+            BinaryObject::from(util::hex_to_vec("FF FE 00 00").unwrap());
+        assert_eq!(
+            Encoding::determine_encoding(&binary_object_utf16),
+            Encoding::Utf16
+        );
+        assert_eq!(
+            String::from(Encoding::determine_encoding(&binary_object_utf16)),
+            "utf16"
+        );
     }
 }
