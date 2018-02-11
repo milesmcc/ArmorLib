@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::u8;
 
-use preprocessor::{Preprocessor, PreprocessorObject};
+use preprocessor::Preprocessor;
 use binary_object::BinaryObject;
 
 pub struct FiletypePrepreprocessor;
