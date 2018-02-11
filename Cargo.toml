@@ -11,3 +11,4 @@ repository = "https://github.com/milesmcc/ArmorLib"
 
 [dependencies]
 maplit = "1.0.1"
+aho-corasick = "0.6.4"
