@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 use std::u8;
 
-use preprocessor::Preprocessor;
+use preprocessor::{Preprocessor, PreprocessorObject};
 use binary_object::BinaryObject;
 
-struct FiletypePrepreprocessor;
+pub struct FiletypePrepreprocessor;
 
 /// Standard filetypes are paired by their magic number and typical file extension.
 /// See https://en.wikipedia.org/wiki/List_of_file_signatures for more information.
