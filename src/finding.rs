@@ -1,9 +1,9 @@
 #[derive(Debug)]
 pub struct Finding {
-    title: String,
-    id: String,
-    description: String,
-    status: Severity,
+    pub title: String,
+    pub id: String,
+    pub description: String,
+    pub severity: Severity,
 }
 
 #[derive(Debug)]
