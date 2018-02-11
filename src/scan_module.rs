@@ -1,7 +1,9 @@
-use scan_report::ScanReport;
+use errors::ProcessingError;
 use scan_object::ScanObject;
+use finding::Finding;
 
-trait ScanModule {
-    fn scan(scan_object: &ScanObject) -> Result<ScanReport, String>;
+pub trait ScanModule: Sized {
+    fn scan(scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError>;
     fn name() -> &'static str;
+    fn required_preprocessors() -> Vec<&'static str>;
 }
