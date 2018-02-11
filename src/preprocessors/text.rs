@@ -10,7 +10,7 @@ pub struct TextPreprocessor;
 
 impl Preprocessor for TextPreprocessor {
     /// Creates two fields: encoding and text
-    /// TODO: improve documentation
+    /// TODO: improve documentation; see https://github.com/milesmcc/ArmorLib/issues/8
     fn process(binary_object: &BinaryObject) -> HashMap<String, String> {
         let mut map: HashMap<String, String> = HashMap::new();
 
@@ -170,7 +170,7 @@ mod tests {
         );
     }
 
-    // #[test] // TODO
+    // #[test] // TODO; see https://github.com/milesmcc/ArmorLib/issues/3
     // fn test_utf32_extraction() {
     // }
     //

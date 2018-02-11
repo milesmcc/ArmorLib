@@ -16,7 +16,7 @@ pub struct ScanObject {
     pub binary_object: BinaryObject,
 }
 
-// TODO: write a nice test
+// TODO: write a nice test; see https://github.com/milesmcc/ArmorLib/issues/10
 impl ScanObject {
     /// Get the given key created by the given preprocessor, where the key and preprocessor are
     /// denoted in the format `<preprocessor/key>`. Will return the HashMap if the

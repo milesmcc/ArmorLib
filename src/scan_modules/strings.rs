@@ -60,4 +60,4 @@ impl ScanModule for StringsScanModule {
     }
 }
 
-// TODO: tests
+// TODO: tests; see https://github.com/milesmcc/ArmorLib/issues/9

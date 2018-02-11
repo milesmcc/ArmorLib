@@ -59,7 +59,7 @@ fn magic_numbers() -> HashMap<&'static str, &'static str> {
         "21 3C 61 72 63 68 3E" => "deb",
         "27 05 19 56" => "uboot",
         "7B 5C 72 74 66 31" => "rtf",
-        // TODO: more
+        // TODO: more; see https://github.com/milesmcc/ArmorLib/issues/5
     }
 }
 
@@ -72,12 +72,12 @@ fn do_bytes_match(pattern: &str, bytes: &[u8]) -> bool {
     for (index, pat_str) in pattern_hex.iter().enumerate() {
         let pat = String::from(*pat_str);
         if pat == String::from("??") {
-            // TODO: optimize
+            // TODO: optimize; see https://github.com/milesmcc/ArmorLib/issues/6
             continue;
         }
         let byte_str = format!("{:02X}", bytes[index]);
         if String::from(byte_str) != pat {
-            // TODO: optimize
+            // TODO: optimize; see https://github.com/milesmcc/ArmorLib/issues/6
             return false;
         }
     }

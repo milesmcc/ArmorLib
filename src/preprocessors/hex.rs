@@ -26,4 +26,4 @@ impl Preprocessor for HexPreprocessor {
     }
 }
 
-// TODO: tests
+// TODO: tests; see https://github.com/milesmcc/ArmorLib/issues/7

@@ -23,7 +23,7 @@ pub enum ProcessingError {
 impl Display for ProcessingError {
     fn fmt(&self, f: &mut Formatter) -> Result<(), Error> {
         let message: String = match self {
-            // TODO: are these messages idiomatic?
+            // TODO: are these messages idiomatic? See https://github.com/milesmcc/ArmorLib/issues/4
             &ProcessingError::UnknownProcessingError(ref msg) => {
                 format!("an unknown processing error occured: {}", msg)
             }
@@ -45,9 +45,7 @@ impl Display for ProcessingError {
 impl error::Error for ProcessingError {
     fn description(&self) -> &str {
         match self {
-            &ProcessingError::UnknownProcessingError(_) => {
-                "an unknown processing error occured"
-            }
+            &ProcessingError::UnknownProcessingError(_) => "an unknown processing error occured",
             &ProcessingError::ParseError(_) => "an error occured while parsing data",
             &ProcessingError::MissingPreprocessor(_) => "unable to find the preprocessor",
             &ProcessingError::MissingMetadata(_) => "unable to find the metadata",
