@@ -6,7 +6,7 @@ use binary_object::BinaryObject;
 
 use util;
 
-struct TextPreprocessor;
+pub struct TextPreprocessor;
 
 impl Preprocessor for TextPreprocessor {
     /// Creates two fields: encoding and text
