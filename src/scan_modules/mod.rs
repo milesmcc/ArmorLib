@@ -6,7 +6,7 @@ use scan_report::ScanReport;
 // List preprocessors here
 pub mod strings;
 
-pub fn scan_modules() -> Vec<Box<ScanModule>> {
+pub fn make_default_scan_modules() -> Vec<Box<ScanModule>> {
     vec![
         Box::new(strings::StringsScanModule {}),
         // ...and add additional preprocessors here
