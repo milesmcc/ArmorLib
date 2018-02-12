@@ -11,7 +11,7 @@ pub struct ScanObject {
     /// respective keys and values.
     pub metadata: HashMap<String, HashMap<String, String>>,
 
-    pub filetype: String,
+    pub filetype: Option<String>,
 
     pub binary_object: BinaryObject,
 }
