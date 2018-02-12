@@ -8,7 +8,7 @@ pub mod filetype;
 pub mod text;
 pub mod hex;
 
-pub fn preprocessors() -> Vec<Box<Preprocessor>> {
+pub fn make_default_preprocessors() -> Vec<Box<Preprocessor>> {
     vec![
         Box::new(filetype::FiletypePrepreprocessor {}),
         Box::new(text::TextPreprocessor {}),
