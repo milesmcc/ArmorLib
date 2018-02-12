@@ -51,8 +51,8 @@ impl ScanModule for StringsScanModule {
         Ok(findings)
     }
 
-    fn name(&self) -> &'static str {
-        "strings"
+    fn info(&self) -> (&'static str, &'static str) {
+        ("strings", "searches for suspicious byte patterns")
     }
 
     fn required_preprocessors(&self) -> Vec<&'static str> {
