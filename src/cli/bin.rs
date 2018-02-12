@@ -58,9 +58,16 @@ fn run_scan(matches: &clap::ArgMatches) {
 }
 
 fn run_modules(matches: &clap::ArgMatches) {
-    unimplemented!();
-}
+    let modules = armorlib::scan_modules::make_default_scan_modules();
+    info!("there are currently {} scan modules available:", modules.len());
+    for module in modules {
+        info!("    → {}: {}", module.name(), module.description());
+    }}
 
 fn run_preprocessors(matches: &clap::ArgMatches) {
-    unimplemented!();
+    let preprocessors = armorlib::preprocessors::make_default_preprocessors();
+    info!("there are currently {} preprocessors available:", preprocessors.len());
+    for preprocessor in preprocessors {
+        info!("    → {}: {}", preprocessor.name(), preprocessor.description());
+    }
 }
