@@ -20,14 +20,17 @@ pub fn process(scan_modules: Vec<Box<ScanModule>>, scan_object: &ScanObject) -> 
         let report: ScanReport = match sm.scan(scan_object) {
             Ok(findings) => ScanReport {
                 error: None,
-                findings: Some(findings),
-                module_name: String::from(sm.name()),
+                findings: match findings.len() {
+                    0 => None,
+                    _ => Some(findings),
+                },
+                module_info: (String::from(sm.name()), String::from(sm.description())),
             },
             Err(error) => ScanReport {
                 error: Some(error),
                 findings: None,
-                module_name: String::from(sm.name()),
-            }
+                module_info: (String::from(sm.name()), String::from(sm.description())),
+            },
         };
         scan_reports.push(report);
     }
