@@ -12,7 +12,7 @@ pub fn process(
     scan_modules_to_run: Vec<Box<ScanModule>>,
     mut extra_preprocessors: Vec<Box<Preprocessor>>,
     binary_object: BinaryObject,
-    filetype: Option<String>
+    filetype: Option<String>,
 ) -> Result<ScanResult, ProcessingError> {
     let mut required_preprocessors: Vec<String> = Vec::new();
 
@@ -34,7 +34,7 @@ pub fn process(
     available_preprocessors.append(&mut preprocessors::make_default_preprocessors());
 
     for preprocessor in available_preprocessors {
-        if required_preprocessors.contains(&String::from(preprocessor.name())){
+        if required_preprocessors.contains(&String::from(preprocessor.name())) {
             preprocessors_to_be_run.push(preprocessor);
         }
     }
@@ -53,4 +53,28 @@ pub fn process(
     let scan_result = scan_modules::process(scan_modules_to_run, &scan_object);
 
     Ok(scan_result)
+}
+
+#[cfg(test)]
+mod tests {
+    use scan_modules;
+    use binary_object;
+    use util;
+    use coordinator::process;
+
+    #[test]
+    fn test_full_cycle() {
+        let scan_result =
+            process(
+                scan_modules::make_default_scan_modules(),
+                Vec::new(),
+                binary_object::BinaryObject::from(
+                    util::hex_to_vec(
+                        "48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF 48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF 48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF"
+                    ).unwrap()),
+                    None
+                );
+        println!("test");
+        println!("{:?}", scan_result);
+    }
 }
