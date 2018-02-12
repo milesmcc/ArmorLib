@@ -26,7 +26,7 @@ fn main() {
                         .index(1),
                 )
                 .arg(
-                    Arg::with_name("output_locationn")
+                    Arg::with_name("output_location")
                         .help("Sets the path of the output file")
                         .required(false)
                         .index(2),
