@@ -1,4 +1,4 @@
-use binary_object::BinaryObject;
+use scan_object::ScanObject;
 use scan_module::ScanModule;
 use scan_result::ScanResult;
 use scan_report::ScanReport;
@@ -13,11 +13,23 @@ pub fn scan_modules() -> Vec<Box<ScanModule>> {
     ]
 }
 
-pub fn process(scan_modules: Vec<Box<ScanModule>>, binary_object: &BinaryObject) -> ScanResult {
-    let scan_reports: Vec<ScanReport> = Vec::new();
+pub fn process(scan_modules: Vec<Box<ScanModule>>, scan_object: &ScanObject) -> ScanResult {
+    let mut scan_reports: Vec<ScanReport> = Vec::new();
 
     for sm in scan_modules {
-        // TODO: run all preprocessors
+        let report: ScanReport = match sm.scan(scan_object) {
+            Ok(findings) => ScanReport {
+                error: None,
+                findings: Some(findings),
+                module_name: String::from(sm.name()),
+            },
+            Err(error) => ScanReport {
+                error: Some(error),
+                findings: None,
+                module_name: String::from(sm.name()),
+            }
+        };
+        scan_reports.push(report);
     }
 
     ScanResult {
