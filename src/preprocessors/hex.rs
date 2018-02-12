@@ -21,8 +21,8 @@ impl Preprocessor for HexPreprocessor {
         }
     }
 
-    fn name(&self) -> &'static str {
-        "hex"
+    fn info(&self) -> (&'static str, &'static str) {
+        ("hex", "creates a hexadecimal byte representation")
     }
 }
 

@@ -24,8 +24,8 @@ impl Preprocessor for TextPreprocessor {
         map
     }
 
-    fn name(&self) -> &'static str {
-        "text"
+    fn info(&self) -> (&'static str, &'static str) {
+        ("text", "intelligently extracts strings")
     }
 }
 

@@ -114,8 +114,8 @@ impl Preprocessor for FiletypePrepreprocessor {
         map
     }
 
-    fn name(&self) -> &'static str {
-        "filetype"
+    fn info(&self) -> (&'static str, &'static str) {
+        ("filetype", "determines the filetype using magic numbers")
     }
 }
 
