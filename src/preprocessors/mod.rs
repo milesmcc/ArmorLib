@@ -10,9 +10,9 @@ pub mod hex;
 
 pub fn preprocessors() -> Vec<Box<Preprocessor>> {
     vec![
-        Box::new(filetype::FiletypePrepreprocessor{}),
-        Box::new(text::TextPreprocessor{}),
-        Box::new(hex::HexPreprocessor{}),
+        Box::new(filetype::FiletypePrepreprocessor {}),
+        Box::new(text::TextPreprocessor {}),
+        Box::new(hex::HexPreprocessor {}),
         // ...and add additional default preprocessors here
     ]
 }
@@ -21,10 +21,12 @@ pub fn process(
     preprocessors: Vec<Box<Preprocessor>>,
     binary_object: &BinaryObject,
 ) -> HashMap<String, HashMap<String, String>> {
-    let map: HashMap<String, HashMap<String, String>> = HashMap::new();
+    let mut map: HashMap<String, HashMap<String, String>> = HashMap::new();
 
-    for preprocessor_box in preprocessors {
-        // TODO: run all preprocessors
+    for preprocessor_box in preprocessors.iter() {
+        let results = preprocessor_box.process(binary_object);
+        map.insert(String::from(preprocessor_box.name()), results);
+        // TODO: proper error checking above
     }
 
     map

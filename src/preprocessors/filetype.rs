@@ -106,7 +106,7 @@ fn determine_file_types(binary_object: &BinaryObject) -> Vec<String> {
 impl Preprocessor for FiletypePrepreprocessor {
     /// Returns a map where the keys are file types (without the leading `.`).
     /// Values are not currently used.
-    fn process(binary_object: &BinaryObject) -> HashMap<String, String> {
+    fn process(&self, binary_object: &BinaryObject) -> HashMap<String, String> {
         let mut map: HashMap<String, String> = HashMap::new();
         for filetype in determine_file_types(binary_object).iter() {
             map.insert(filetype.clone(), String::from(""));
@@ -114,7 +114,7 @@ impl Preprocessor for FiletypePrepreprocessor {
         map
     }
 
-    fn name() -> &'static str {
+    fn name(&self) -> &'static str {
         "filetype"
     }
 }

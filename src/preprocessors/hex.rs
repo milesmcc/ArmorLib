@@ -11,7 +11,7 @@ use binary_object::BinaryObject;
 pub struct HexPreprocessor;
 
 impl Preprocessor for HexPreprocessor {
-    fn process(binary_object: &BinaryObject) -> HashMap<String, String> {
+    fn process(&self, binary_object: &BinaryObject) -> HashMap<String, String> {
         let mut string = String::new();
         for byte in &binary_object.data {
             string.push_str(&format!("{:02X} ", byte));
@@ -21,7 +21,7 @@ impl Preprocessor for HexPreprocessor {
         }
     }
 
-    fn name() -> &'static str {
+    fn name(&self) -> &'static str {
         "hex"
     }
 }

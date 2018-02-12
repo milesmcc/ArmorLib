@@ -11,7 +11,7 @@ pub struct TextPreprocessor;
 impl Preprocessor for TextPreprocessor {
     /// Creates two fields: encoding and text
     /// TODO: improve documentation; see https://github.com/milesmcc/ArmorLib/issues/8
-    fn process(binary_object: &BinaryObject) -> HashMap<String, String> {
+    fn process(&self, binary_object: &BinaryObject) -> HashMap<String, String> {
         let mut map: HashMap<String, String> = HashMap::new();
 
         // determine encoding
@@ -24,7 +24,7 @@ impl Preprocessor for TextPreprocessor {
         map
     }
 
-    fn name() -> &'static str {
+    fn name(&self) -> &'static str {
         "text"
     }
 }
