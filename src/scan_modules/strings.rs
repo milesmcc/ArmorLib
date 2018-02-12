@@ -22,7 +22,7 @@ fn suspicious_strings() -> HashMap<&'static str, &'static str> {
 }
 
 impl ScanModule for StringsScanModule {
-    fn scan(scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
+    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
         let mut findings: Vec<Finding> = Vec::new();
 
         let strings = suspicious_strings();
@@ -51,11 +51,11 @@ impl ScanModule for StringsScanModule {
         Ok(findings)
     }
 
-    fn name() -> &'static str {
+    fn name(&self) -> &'static str {
         "strings"
     }
 
-    fn required_preprocessors() -> Vec<&'static str> {
+    fn required_preprocessors(&self) -> Vec<&'static str> {
         vec!["hex"]
     }
 }
