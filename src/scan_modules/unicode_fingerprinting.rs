@@ -12,12 +12,14 @@ use finding::{Finding, Severity};
 
 /// A scan module that implements checking for Unicode zero-width characters, a common technique used
 /// for identifying leakers or otherwise invading privacy.
-pub struct UnicodeFingerprintScanModule;
+pub struct UnicodeWatermarkScanModule;
 
 fn fingerprint_chars() -> HashMap<char, &'static str> {
     hashmap! {
         '\u{200b}' => "Unicode zero-width space: most likely suspicious",
         '\u{feff}' => "Unicode zero-width no-break space: most likely suspicious",
+        '\u{200c}' => "Unicode zero-width non-joiner: could be OK, possibly suspicious",
+        '\u{200d}' => "Unicode zero-width joiner: could be OK, possibly suspicious",
     }
 }
 
@@ -48,7 +50,7 @@ fn surrounding_text(i: usize, text: &str) -> String  {
     surround
 }
 
-impl ScanModule for UnicodeFingerprintScanModule {
+impl ScanModule for UnicodeWatermarkScanModule {
     /// Returns locations of Unicode zero-width strings.
     fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
         let mut findings = Vec::new();
@@ -76,7 +78,7 @@ impl ScanModule for UnicodeFingerprintScanModule {
     }
 
     fn info(&self) -> (&'static str, &'static str) {
-        ("unicode_fingerprinting", "searches for attempts to fingerprint text using unusual Unicode")
+        ("unicode_watermarking", "searches for attempts to fingerprint text using unusual Unicode")
     }
 
     fn required_preprocessors(&self) -> Vec<&'static str> {
@@ -119,5 +121,36 @@ mod tests {
                    "found suspicious character at index 3: \"The_[HERE]_ nuclear\u{200b} launc\"");
         assert_eq!(finding2.description,
                    "found suspicious character at index 14: \"The\u{feff} nuclear_[HERE]_ launch codes are\"");
+    }
+    #[test]
+    fn test_zero_width_joiner_non_joiner() {
+        // has zero-width joiners in it after "the" and "0001" 
+        let sus_string = "The﻿ nuclear​ launch codes are 0000, 0001, and 1234.";
+        let mut scan_result = process(
+            vec![Box::new(UnicodeFingerprintScanModule)],
+            Vec::new(),
+            BinaryObject::from(sus_string.as_bytes().to_vec()),
+            None
+        ).unwrap();
+        let scan_report = scan_result.reports.pop().unwrap();
+        assert_eq!(scan_report.module_info.0.as_str(),
+                   "unicode_fingerprinting");
+        assert_eq!(scan_report.module_info.1.as_str(),
+                   "searches for attempts to watermark text using unusual Unicode");
+        let findings = scan_report.findings.unwrap();
+        let finding1 = findings.get(0).unwrap();
+        let finding2 = findings.get(1).unwrap();
+        assert_eq!(finding1.title,
+                   "Unicode zero-width no-break space: most likely suspicious");
+        assert_eq!(finding2.title,
+                   "Unicode zero-width space: most likely suspicious");
+        assert_eq!(finding1.id, "UNICODE_FINGERPRINT");
+        assert_eq!(finding1.severity, finding2.severity);
+        assert_eq!(finding1.severity, Severity::Warn(String::from("possible attempt to fingerprint data")));
+        assert_eq!(finding1.description,
+                   "found suspicious character at index 3: \"The_[HERE]_ nuclear\u{200b} launc\"");
+        assert_eq!(finding2.description,
+                   "found suspicious character at index 14: \"The\u{feff} nuclear_[HERE]_ launch codes are\"");
+    }
     }
 }
