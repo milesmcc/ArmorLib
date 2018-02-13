@@ -5,6 +5,7 @@ use scan_report::ScanReport;
 
 // List preprocessors here
 pub mod strings;
+pub mod unicode_fingerprinting;
 
 pub fn make_default_scan_modules() -> Vec<Box<ScanModule>> {
     vec![
