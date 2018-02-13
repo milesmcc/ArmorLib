@@ -6,7 +6,7 @@ pub struct Finding {
     pub severity: Severity,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Hash)]
 pub enum Severity {
     /// there is no issue with the data
     Ok(String),
