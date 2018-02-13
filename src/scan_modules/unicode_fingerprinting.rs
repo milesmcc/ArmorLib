@@ -21,6 +21,33 @@ fn fingerprint_chars() -> HashMap<char, &'static str> {
     }
 }
 
+/// Gets the surrounding 20 characters on either side of the given index, truncating if at the end or
+/// beginning of the string. Replaces the exact character with "_[HERE]_".
+fn surrounding_text(i: usize, text: &str) -> String  {
+    let mut surround = String::new();
+    let mut is_in_range = false;
+    for (j, character) in text.char_indices() {
+        // check if in range on left side for first time
+        if !is_in_range && i <= 20 + j && i >= j {
+            is_in_range = true;
+        }
+        // check if moving out of range
+        if is_in_range && j == 20 + i {
+            is_in_range = false;
+        }
+        // if in range, add to surround
+        if is_in_range {
+            // replace character itself
+            if i == j {
+                surround.push_str("_[HERE]_");
+            } else {
+                surround.push(character);
+            }
+        }
+    }
+    surround
+}
+
 impl ScanModule for FingerprintScanModule {
     /// Returns locations of Unicode zero-width strings.
     fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
@@ -28,14 +55,15 @@ impl ScanModule for FingerprintScanModule {
         
         // get text
         let text = scan_object.get_metadata("text/text")?;
-        let chars = text.chars();
         let fingerprints = fingerprint_chars();
-        for (i, character) in chars.enumerate() {
+        for (i, character) in text.char_indices() {
             match fingerprints.get(&character) {
                 Some(warn_text) =>  {
                     findings.push(Finding {
                         title: String::from(*warn_text),
-                        description: format!("Found suspicious character at index {}", i),
+                        description: format!("found suspicious character at index {}: \"{}\"",
+                                             i, surrounding_text(i, text.as_str())
+                        ),
                         id: String::from("UNICODE_FINGERPRINT"),
                         severity: Severity::Warn(String::from("possible attempt to fingerprint data")),
                     });                    
@@ -89,8 +117,8 @@ mod tests {
         assert_eq!(finding1.severity, finding2.severity);
         assert_eq!(finding1.severity, Severity::Warn(String::from("possible attempt to fingerprint data")));
         assert_eq!(finding1.description,
-                   "Found suspicious character at index 3");
+                   "found suspicious character at index 3: \"The_[HERE]_ nuclear\u{200b} launc\"");
         assert_eq!(finding2.description,
-                   "Found suspicious character at index 12");        
+                   "found suspicious character at index 14: \"The\u{feff} nuclear_[HERE]_ launch codes are\"");
     }
 }
