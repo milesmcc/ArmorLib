@@ -37,7 +37,7 @@ impl Display for ProcessingError {
                 format!("unable to find the metadata at path `{}`", msg)
             }
         };
-        write!(f, "{}", message.as_str());
+        write!(f, "{}", message.as_str())?;
         Ok(()) // something seems off about this line
     }
 }

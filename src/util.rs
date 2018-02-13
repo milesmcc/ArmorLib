@@ -2,6 +2,7 @@
 
 use std::num::ParseIntError;
 
+#[allow(dead_code)]
 pub fn hex_to_vec(hex: &str) -> Result<Vec<u8>, ParseIntError> {
     let mut bytes: Vec<u8> = Vec::new();
     for byte in String::from(hex).to_uppercase().split(" ") {
