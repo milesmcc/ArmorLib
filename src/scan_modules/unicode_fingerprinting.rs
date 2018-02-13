@@ -12,7 +12,7 @@ use finding::{Finding, Severity};
 
 /// A scan module that implements checking for Unicode zero-width characters, a common technique used
 /// for identifying leakers or otherwise invading privacy.
-pub struct FingerprintScanModule;
+pub struct UnicodeFingerprintScanModule;
 
 fn fingerprint_chars() -> HashMap<char, &'static str> {
     hashmap! {
@@ -48,7 +48,7 @@ fn surrounding_text(i: usize, text: &str) -> String  {
     surround
 }
 
-impl ScanModule for FingerprintScanModule {
+impl ScanModule for UnicodeFingerprintScanModule {
     /// Returns locations of Unicode zero-width strings.
     fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
         let mut findings = Vec::new();
@@ -89,14 +89,13 @@ mod tests {
     #[allow(unused_imports)]
     use super::*;
     use coordinator::process;
-    use scan_modules::make_default_scan_modules;
     use binary_object::BinaryObject;
     #[test]
     fn test_zero_width_space_char() {
         // has zero-width spaces in it after "the" and "nuclear" (non-breaking and breaking)
         let sus_string = "The﻿ nuclear​ launch codes are 0000, 0001, and 1234.";
         let mut scan_result = process(
-            vec![Box::new(FingerprintScanModule)],
+            vec![Box::new(UnicodeFingerprintScanModule)],
             Vec::new(),
             BinaryObject::from(sus_string.as_bytes().to_vec()),
             None
