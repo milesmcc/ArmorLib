@@ -12,16 +12,17 @@ pub mod scan_result;
 pub mod finding;
 pub mod errors;
 pub mod preprocessor;
+pub mod process;
 
 pub mod preprocessors;
 pub mod scan_modules;
 
 mod util;
 
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
+pub use process::Process;
+pub use binary_object::BinaryObject;
+pub use finding::Finding;
+pub use preprocessor::Preprocessor;
+pub use scan_module::ScanModule;
+pub use scan_report::ScanReport;
+pub use scan_result::ScanResult;
