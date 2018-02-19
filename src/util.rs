@@ -1,5 +1,5 @@
-/// This file defines several low-level utility functions for general use by ArmorLib. You can
-/// use these functions in your own program, but they are designed for internal use.
+//! This module defines several low-level utility functions for general use by ArmorLib. You can
+//! use these functions in your own program, but they are designed for internal use.
 
 use std::num::ParseIntError;
 
