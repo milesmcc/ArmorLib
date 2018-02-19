@@ -1,6 +1,7 @@
 //! This is a module that defines the `ScanResult`, the "final product" when ArmorLib processes a
 //! `BinaryObject`. It is a collection (`Vec`) of `ScanReport`s, each of which was created by a
-//! `ScanModule`.
+//! `ScanModule`. `ScanResult` is also available under the default namespace as
+//! `armorlib::ScanResult`.
 
 use scan_report::ScanReport;
 
