@@ -57,7 +57,6 @@ fn run(matches: clap::ArgMatches) {
 fn run_scan(matches: &clap::ArgMatches) {
     use std::fs::File;
     use std::io::prelude::*;
-    use std::ffi::OsStr;
     use std::path::Path;
     use armorlib::finding::Severity;
 
@@ -156,7 +155,7 @@ fn run_scan(matches: &clap::ArgMatches) {
     }
 }
 
-fn run_modules(matches: &clap::ArgMatches) {
+fn run_modules(_matches: &clap::ArgMatches) {
     let modules = armorlib::scan_modules::make_default_scan_modules();
     info!(
         "there are currently {} scan modules available:",
@@ -167,7 +166,7 @@ fn run_modules(matches: &clap::ArgMatches) {
     }
 }
 
-fn run_preprocessors(matches: &clap::ArgMatches) {
+fn run_preprocessors(_matches: &clap::ArgMatches) {
     let preprocessors = armorlib::preprocessors::make_default_preprocessors();
     info!(
         "there are currently {} preprocessors available:",
