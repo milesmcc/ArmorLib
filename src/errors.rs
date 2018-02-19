@@ -43,8 +43,8 @@ impl Display for ArmorlibError {
                 format!("unable to read the file at path `{}`", msg)
             }
         };
-        write!(f, "{}", message.as_str());
-        Ok(()) // something seems off about this line
+        write!(f, "{}", message.as_str())?;
+        Ok(())
     }
 }
 
