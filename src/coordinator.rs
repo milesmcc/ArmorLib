@@ -1,6 +1,6 @@
 use scan_result::ScanResult;
 use binary_object::BinaryObject;
-use errors::ProcessingError;
+use errors::ArmorlibError;
 use preprocessor::Preprocessor;
 use scan_module::ScanModule;
 use scan_object::ScanObject;
@@ -13,7 +13,7 @@ pub fn process(
     mut extra_preprocessors: Vec<Box<Preprocessor>>,
     binary_object: BinaryObject,
     filetype: Option<String>,
-) -> Result<ScanResult, ProcessingError> {
+) -> Result<ScanResult, ArmorlibError> {
     let mut required_preprocessors: Vec<String> = Vec::new();
 
     // figure out which preprocessors are required

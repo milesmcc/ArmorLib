@@ -5,7 +5,7 @@
 
 use std::collections::HashMap;
 
-use errors::ProcessingError;
+use errors::ArmorlibError;
 use scan_module::ScanModule;
 use scan_object::ScanObject;
 use finding::{Finding, Severity};
@@ -50,9 +50,9 @@ fn surrounding_text(i: usize, text: &str) -> String  {
 
 impl ScanModule for FingerprintScanModule {
     /// Returns locations of Unicode zero-width strings.
-    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
+    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ArmorlibError> {
         let mut findings = Vec::new();
-        
+
         // get text
         let text = scan_object.get_metadata("text/text")?;
         let fingerprints = fingerprint_chars();
@@ -66,7 +66,7 @@ impl ScanModule for FingerprintScanModule {
                         ),
                         id: String::from("UNICODE_FINGERPRINT"),
                         severity: Severity::Warn(String::from("possible attempt to fingerprint data")),
-                    });                    
+                    });
                 }
                 _ => {}
             }

@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::ops::Index;
 
-use errors::ProcessingError;
+use errors::ArmorlibError;
 use binary_object::BinaryObject;
 
 pub struct ScanObject {
@@ -22,7 +22,7 @@ impl ScanObject {
     /// denoted in the format `<preprocessor/key>`. Will return the HashMap if the
     /// preprocessor is present, ortherwise a `ProcessingError::MissingPreprocessor` error
     /// will be returned.
-    pub fn get_metadata(&self, path: &str) -> Result<&String, ProcessingError> {
+    pub fn get_metadata(&self, path: &str) -> Result<&String, ArmorlibError> {
         let path = String::from(path);
         let key_pair: Vec<&str> = path.split('/').collect();
         let (preprocessor, key) = (
@@ -32,9 +32,9 @@ impl ScanObject {
         match self.metadata.get(&preprocessor) {
             Some(map) => match map.get(&key) {
                 Some(value) => Ok(value),
-                None => Err(ProcessingError::MissingMetadata(path.clone())),
+                None => Err(ArmorlibError::MissingMetadata(path.clone())),
             },
-            None => Err(ProcessingError::MissingPreprocessor(preprocessor)),
+            None => Err(ArmorlibError::MissingPreprocessor(preprocessor)),
         }
     }
 }

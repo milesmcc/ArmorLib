@@ -6,7 +6,7 @@ use std::collections::HashMap;
 
 use aho_corasick::{AcAutomaton, Automaton};
 
-use errors::ProcessingError;
+use errors::ArmorlibError;
 use scan_module::ScanModule;
 use scan_object::ScanObject;
 use finding::{Finding, Severity};
@@ -22,7 +22,7 @@ fn suspicious_strings() -> HashMap<&'static str, &'static str> {
 }
 
 impl ScanModule for StringsScanModule {
-    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError> {
+    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ArmorlibError> {
         let mut findings: Vec<Finding> = Vec::new();
 
         let strings = suspicious_strings();
@@ -35,7 +35,7 @@ impl ScanModule for StringsScanModule {
             let description: &str = match strings.get(pattern) {
                 Some(description) => description,
                 None => {
-                    return Err(ProcessingError::UnknownProcessingError(String::from(
+                    return Err(ArmorlibError::UnknownProcessingError(String::from(
                         "matched key not found",
                     )))
                 }

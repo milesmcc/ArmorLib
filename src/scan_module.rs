@@ -1,9 +1,9 @@
-use errors::ProcessingError;
+use errors::ArmorlibError;
 use scan_object::ScanObject;
 use finding::Finding;
 
 pub trait ScanModule {
-    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ProcessingError>;
+    fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ArmorlibError>;
     fn required_preprocessors(&self) -> Vec<&'static str>;
     /// Returns a tuple of the name and description of the scan module.
     fn info(&self) -> (&'static str, &'static str);
