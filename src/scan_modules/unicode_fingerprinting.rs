@@ -89,7 +89,6 @@ mod tests {
     #[allow(unused_imports)]
     use super::*;
     use coordinator::process;
-    use scan_modules::make_default_scan_modules;
     use binary_object::BinaryObject;
     #[test]
     fn test_zero_width_space_char() {
