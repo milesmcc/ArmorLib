@@ -13,7 +13,7 @@ use std::io::Read;
 /// # Examples
 ///
 /// ```rust
-/// use armorlib::process::Process;
+/// use armorlib::Process;
 /// let data: Vec<u8> = vec![]; // empty data for demo
 /// let scan_result = data.process().unwrap();
 /// ```
@@ -40,7 +40,7 @@ pub trait Process: Sized {
 /// # Examples
 ///
 /// ```rust
-/// use armorlib::process::Process;
+/// use armorlib::Process;
 /// let data: Vec<u8> = vec![]; // empty data for demo
 /// let scan_result = data.process().unwrap();
 /// ```
