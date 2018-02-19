@@ -5,11 +5,12 @@ use scan_report::ScanReport;
 
 // List preprocessors here
 pub mod strings;
-pub mod unicode_fingerprinting;
+pub mod unicode_watermark;
 
 pub fn make_default_scan_modules() -> Vec<Box<ScanModule>> {
     vec![
         Box::new(strings::StringsScanModule {}),
+        Box::new(unicode_watermark::UnicodeWatermarkScanModule {}),
         // ...and add additional preprocessors here
     ]
 }

@@ -3,7 +3,6 @@
 /// unnnecessary duplicate code and memory use, as searching the hex string is a common
 /// function.
 use std::collections::HashMap;
-use std::ops::Add;
 
 use preprocessor::Preprocessor;
 use binary_object::BinaryObject;
