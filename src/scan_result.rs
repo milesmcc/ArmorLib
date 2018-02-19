@@ -1,5 +1,6 @@
-//! A `ScanResult` is a the "final product" when ArmorLib processes a `BinaryObject`. It is a
-//! collection (`Vec`) of `ScanReport`s, each of which was created by a `ScanModule`.
+//! This is a module that defines the `ScanResult`, the "final product" when ArmorLib processes a
+//! `BinaryObject`. It is a collection (`Vec`) of `ScanReport`s, each of which was created by a
+//! `ScanModule`.
 
 use scan_report::ScanReport;
 
