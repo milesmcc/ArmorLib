@@ -13,11 +13,10 @@ pub mod finding;
 pub mod errors;
 pub mod preprocessor;
 pub mod process;
+pub mod util;
 
 pub mod preprocessors;
 pub mod scan_modules;
-
-mod util;
 
 pub use process::Process;
 pub use binary_object::BinaryObject;
