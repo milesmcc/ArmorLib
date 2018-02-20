@@ -23,5 +23,7 @@ pub use binary_object::BinaryObject;
 pub use finding::Finding;
 pub use preprocessor::Preprocessor;
 pub use scan_module::ScanModule;
+pub use scan_object::ScanObject;
 pub use scan_report::ScanReport;
 pub use scan_result::ScanResult;
+pub use errors::ArmorlibError;
