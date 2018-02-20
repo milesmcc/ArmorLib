@@ -1,6 +1,5 @@
 # ArmorLib
 [![Build Status](https://travis-ci.org/milesmcc/ArmorLib.svg?branch=master)](https://travis-ci.org/milesmcc/ArmorLib)
-[![Coverage Status](https://coveralls.io/repos/github/milesmcc/ArmorLib/badge.svg?branch=master)](https://coveralls.io/github/milesmcc/ArmorLib?branch=master)
 
 Easily scan files for threats to security and privacy. Available as a Rust crate or as a command-line utility.
 
