@@ -40,4 +40,4 @@ If you're looking to quickly get started with using ArmorLib in your own Rust pr
 
 ---
 
-To learn about the high level architecture of ArmorLib, see [docs/STRUCTURE.md](docs/STRUCTURE.md). For the development ideology, see [docs/IDEOLOGY.md](docs/IDEOLOGY.md). Be sure to follow the [contribution guidelines](CONTRIBUTING.md) when submitting code. Always abide by the [code of conduct](CODE_OF_CONDUCT.md).
+To learn about the high level architecture of ArmorLib, see [docs/STRUCTURE.md](STRUCTURE.md). For the development ideology, see [docs/IDEOLOGY.md](IDEOLOGY.md).
