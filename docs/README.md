@@ -2,7 +2,7 @@
 ArmorLib has two parts: a command line tool for general usage, and a Rust library for those who wish to integrate ArmorLib's functionality into their own code or extend ArmorLib themselves. These two fundamentally different use cases are addressed separately in the ArmorLib documentation. Contributing to ArmorLib is also addressed separately.
 
 ## Command Line Interface
-To learn how to use ArmorLib's powerful command line interface (`CLI`), start by visiting the CLI ['Getting Started' page](docs/cli/GETTING_STARTED.md).
+To learn how to use ArmorLib's powerful command line interface (`CLI`), start by visiting the CLI ['Getting Started' page](cli/GETTING_STARTED.md).
 
 Alternatively, you can access documentation right from the shell! Install ArmorLib with Cargo by running `cargo install armorlib` and then run `armorlib --help`:
 
@@ -27,7 +27,7 @@ SUBCOMMANDS:
 ```
 
 ## Library
-To learn how to use ArmorLib in your own Rust library, two major resources are offered: `rustdoc` and the library's ['Getting Started' guide](docs/library/GETTING_STARTED.md).
+To learn how to use ArmorLib in your own Rust library, two major resources are offered: `rustdoc` and the library's ['Getting Started' guide](library/GETTING_STARTED.md).
 
 ### Rustdoc
 
