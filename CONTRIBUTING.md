@@ -1,5 +1,4 @@
 # Contributing
-
 Before contributing, be sure to familiarize yourself with the project objective, as defined in [`README.md`](README.md).
 
 ## Syntax
