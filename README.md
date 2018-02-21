@@ -1,5 +1,10 @@
 # ArmorLib
 [![Build Status](https://travis-ci.org/milesmcc/ArmorLib.svg?branch=master)](https://travis-ci.org/milesmcc/ArmorLib)
+[![GitHub issues](https://img.shields.io/github/issues/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/issues)
+[![GitHub forks](https://img.shields.io/github/forks/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/network)
+[![GitHub stars](https://img.shields.io/github/stars/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/stargazers)
+[![GitHub license](https://img.shields.io/github/license/milesmcc/armorlib.svg)](https://github.com/milesmcc/ArmorLib/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/milesmcc/armorlib.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fmilesmcc%2Farmorlib)
 
 Easily scan files for threats to security and privacy. Available as a Rust crate or as a command-line utility.
 
