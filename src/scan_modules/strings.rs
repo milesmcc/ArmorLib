@@ -1,6 +1,6 @@
-/// This scan module searches for common problematic strings.
-/// It uses the Aho–Corasick algorithm for `n*log(s) search time complexity, where `n`
-/// is the length of the string and s is the number of strings in the string database.
+//! This scan module searches for common problematic strings.
+//! It uses the Aho–Corasick algorithm for `n*log(s) search time complexity, where `n`
+//! is the length of the string and s is the number of strings in the string database.
 
 use std::collections::HashMap;
 
