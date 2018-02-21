@@ -25,7 +25,7 @@ ArmorLib has near 100% documentation coverage, and offers both a comprehensive `
 ## Contributing
 ArmorLib welcomes contributions! Several resources are available to help you in this process.
 
-* **Contributing guidelines** available [here](/CONTRIBUTING.md).
+* **Contributing guidelines** available [here](CONTRIBUTING.md).
 * **Preprocessor contribution guide** available [here](docs/contributing/PREPROCESSORS.md).
 * **Scan module contribution guide** available [here](docs/contributing/SCAN_MODULES.md).
 
