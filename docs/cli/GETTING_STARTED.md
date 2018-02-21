@@ -1,7 +1,6 @@
-# Getting started with ArmorLib
-You've installed ArmorLib either as a command-line utility or a library. Great! Now what? This page will explain how you can use ArmorLib as a command-line tool or in your own Rust programs.
+# Using ArmorLib on the command line
+You've installed ArmorLib either as a command-line utility. Great! Now what? This page will explain how you can use ArmorLib as a command-line tool.
 
-## Using ArmorLib on the command line
 Before you can use ArmorLib on the command line, you'll need to make sure that your shell can find the ArmorLib executable. Usually, `cargo` will do this for you. If it doesn't, see [this](https://doc.rust-lang.org/book/second-edition/ch14-04-installing-binaries.html) Rust guide.
 
 ### Documentation on the command line
