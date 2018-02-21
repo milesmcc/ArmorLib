@@ -37,3 +37,7 @@ View the `rustdoc` [here](doc/armorlib/index.html).
 
 ### Getting Started Guide
 If you're looking to quickly get started with using ArmorLib in your own Rust project, read the ['Getting Started' guide](docs/library/GETTING_STARTED.md). It will guide you through the process of installing ArmorLib and scanning files and custom hex data.
+
+---
+
+To learn about the high level architecture of ArmorLib, see [docs/STRUCTURE.md](docs/STRUCTURE.md). For the development ideology, see [docs/IDEOLOGY.md](docs/IDEOLOGY.md). Be sure to follow the [contribution guidelines](CONTRIBUTING.md) when submitting code. Always abide by the [code of conduct](CODE_OF_CONDUCT.md).
