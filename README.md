@@ -22,6 +22,8 @@ Want to jump right in? Check out our getting started guides to get you up to spe
 ## Documentation
 ArmorLib has near 100% documentation coverage, and offers both a comprehensive `rustdoc` and several other guides. Explore the ArmorLib documentation [here](docs/README.md).
 
+> **Looking for a more high-level description of ArmorLib?** Be sure to take a look at [docs/STRUCTURE.md](docs/STRUCTURE.md).
+
 ## Contributing
 ArmorLib welcomes contributions! Several resources are available to help you in this process.
 

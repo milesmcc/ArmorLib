@@ -29,6 +29,8 @@ SUBCOMMANDS:
 ## Library
 To learn how to use ArmorLib in your own Rust library, two major resources are offered: `rustdoc` and the library's ['Getting Started' guide](library/GETTING_STARTED.md).
 
+If you would like to learn more about the high-level structure of ArmorLib, refer to [STRUCTURE.md](STRUCTURE.md).
+
 ### Rustdoc
 
 The `rustdoc` is an interactive documentation website that, if you're familiar with Rust, you'll be used to. It documents every single public function, struct, enum, and field of ArmorLib and provides dozens of examples to work with. The `rustdoc` is perfect for exploring the ArmorLib source and learning how to interact with its internals. If you're looking for a step-by-step guide to use ArmorLib in your own project, consider reading the guide below.
