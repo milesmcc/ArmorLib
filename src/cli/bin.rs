@@ -26,12 +26,12 @@ fn main() {
                         .required(true)
                         .index(1),
                 )
-                .arg(
-                    Arg::with_name("output_location")
-                        .help("Sets the path of the output file")
-                        .required(false)
-                        .index(2),
-                ),
+                // .arg(
+                //     Arg::with_name("output_location")
+                //         .help("Sets the path of the output file")
+                //         .required(false)
+                //         .index(2),
+                // ),
         )
         .subcommand(
             SubCommand::with_name("modules")
