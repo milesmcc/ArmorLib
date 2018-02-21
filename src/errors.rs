@@ -1,6 +1,11 @@
+//! This module defines errors specific to ArmorLib. The main error `ArmorlibError` is available
+//! in the root namespace as `armorlib::ArmorlibError`.
+
 use std::fmt::{Display, Error, Formatter};
 use std::error;
 
+/// An enum that represents an error specific to ArmorLib. This enum implements
+/// `std:error::Error`.
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum ArmorlibError {
     /// For use when an unknown processing error occurs.
