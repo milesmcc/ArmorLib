@@ -1,3 +1,9 @@
+//! This file allows for more fine-grained access to the ArmorLib system. While in most cases
+//! it is suitable to simply call `.process()` on a `File`, `Vec<u8>`, or `BinaryObject`, there
+//! exist some cases when more control is needed. For example, if you'd like to run only a select
+//! number of scan modules (instead of all), you can use the detailed `process()` function defined
+//! in this module to do so.
+
 use scan_result::ScanResult;
 use binary_object::BinaryObject;
 use errors::ArmorlibError;
@@ -7,7 +13,38 @@ use scan_object::ScanObject;
 use preprocessors;
 use scan_modules;
 
-/// Process the given `BinaryObject` and return a `ScanResult`
+/// Process the given `BinaryObject` through the ArmorLib system and return a `ScanResult`.
+/// All other `process()` functions are simply wrappers for this function.
+///
+/// # Arguments
+///
+/// * `scan_modules_to_run`: a vec of the `ScanModule`s to run while processing.
+/// * `extra_preprocessors`: a vec of the extra preprocessors (in addition to those that are
+/// included in the core library) that are necessary to run the given `scan_mdoules_to_run`. Like
+/// normal core library preprocessors, a preprocessor will only run if it is required by some scan
+/// module.
+/// * `binary_object`: the `BinaryObject` that will be scanned by ArmorLib.
+/// * `filetype`: an `Option<String>` of the filetype of the data, with preceding `.`
+/// (e.g. `.pdf`). Because this information may not be known, there is a possibility of
+/// absence that is represented by the wrapping `Option`.
+///
+/// # Examples
+///
+/// ```rust
+/// use armorlib::{scan_modules, binary_object, util};
+/// use armorlib::coordinator;
+/// let scan_result =
+///    coordinator::process(
+///        scan_modules::make_default_scan_modules(),
+///        Vec::new(),
+///        binary_object::BinaryObject::from(
+///            util::hex_to_vec(
+///                "48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF 48 8B CD E8 60"
+///            ).unwrap()),
+///            None
+///        );
+/// ```
+
 pub fn process(
     scan_modules_to_run: Vec<Box<ScanModule>>,
     mut extra_preprocessors: Vec<Box<Preprocessor>>,
@@ -64,7 +101,7 @@ mod tests {
 
     #[test]
     fn test_full_cycle() {
-        let scan_result =
+        let _scan_result =
             process(
                 scan_modules::make_default_scan_modules(),
                 Vec::new(),
@@ -73,8 +110,6 @@ mod tests {
                         "48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF 48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF 48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF"
                     ).unwrap()),
                     None
-                );
-        println!("test");
-        println!("{:?}", scan_result);
+                ).unwrap();
     }
 }
