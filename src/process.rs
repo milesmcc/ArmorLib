@@ -1,10 +1,12 @@
+//! This module defines the `process` trait, which is designed to make processing simple
+//! structs, like a
+
 use coordinator;
 use scan_result::ScanResult;
 use scan_modules::make_default_scan_modules;
 use errors::ArmorlibError;
 use binary_object::BinaryObject;
 use std::fs::File;
-use std::io::Read;
 
 /// A trait that allows for the object to be run through the ArmorLib system with only a single
 /// call to `.process()`. This is a perfectly valid way of passing objects through ArmorLib,
@@ -17,61 +19,70 @@ use std::io::Read;
 /// let data: Vec<u8> = vec![]; // empty data for demo
 /// let scan_result = data.process().unwrap();
 /// ```
-pub trait Process: Sized {
+pub trait Process {
     fn process(self) -> Result<ScanResult, ArmorlibError>
     where
         Self: Sized,
+        BinaryObject: From<Self>,
     {
-        let binary_object_data = self.to_binary_object()?;
         coordinator::process(
             make_default_scan_modules(),
             Vec::new(),
-            binary_object_data,
+            BinaryObject::from(self),
             None,
         )
     }
-
-    fn to_binary_object(self) -> Result<BinaryObject, ArmorlibError>;
 }
 
-/// An implementation of `Process` for `Vec<u8>`, so that `vec.process()` can be called when
-/// `Process` is in scope.
+/// An empty implementation of Process for `Vec<u8>`. Because `BinaryObject: From<Vec<u8>>` is
+/// implemented in the `binary_object` module, no special implementation is necessary here.
+/// Provided that `binary_object` is in scope, you can just call `vec.process()`.
 ///
 /// # Examples
 ///
 /// ```rust
-/// use armorlib::Process;
-/// let data: Vec<u8> = vec![]; // empty data for demo
-/// let scan_result = data.process().unwrap();
+/// use armorlib::binary_object::BinaryObject;
+/// use armorlib::process::Process;
+/// let vec: Vec<u8> = vec![1, 2, 3, 4, 5];
+/// let _scan_result = vec.process().unwrap(); // this is a `ScanResult` object
 /// ```
-impl Process for Vec<u8> {
-    fn to_binary_object(self) -> Result<BinaryObject, ArmorlibError> {
-        Ok(BinaryObject::from(self))
-    }
-}
+impl Process for Vec<u8> {}
 
-/// An implementation of `Process` for `std::io::File`, so that `file.process()` can be called when
-/// `Process` is in scope.
-impl Process for File {
-    fn to_binary_object(mut self) -> Result<BinaryObject, ArmorlibError> {
-        let mut data_vec: Vec<u8> = Vec::new();
-        match self.read_to_end(&mut data_vec) {
-            Ok(_length) => Ok(BinaryObject::from(data_vec)),
-            Err(error) => Err(ArmorlibError::ReadFileError(format!(
-                "unable to read the file {:?}: {}",
-                self, error
-            ))),
-        }
-    }
-}
+// TODO: documentation. How do you create fake demo files to work with?
+impl Process for File {}
+
+/// An empty implementation of Process for `BinaryObject`. Because `BinaryObject:
+/// From<BinaryObject>>` is implemented in the `binary_object` module, no special implementation
+/// is necessary here. Provided that `binary_object` is in scope, you can just call
+/// `binary_object.process()`.
+///
+/// # Examples
+///
+/// ```rust
+/// use armorlib::binary_object::BinaryObject;
+/// use armorlib::process::Process;
+/// let vec: Vec<u8> = vec![1, 2, 3, 4, 5];
+/// let bin_obj = BinaryObject::from(vec);
+/// let _scan_result = bin_obj.process().unwrap(); // this is a `ScanResult` object
+/// ```
+impl Process for BinaryObject {}
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use binary_object::BinaryObject;
 
     #[test]
     fn test_for_vec() {
-        let file: Vec<u8> = vec![]; // empty data for demo
-        let _scan_result = file.process().unwrap(); // if unwrap fails, so will test
+        let data: Vec<u8> = vec![]; // empty data for demo
+        let _scan_result = data.process().unwrap(); // if unwrap fails, so will test
     }
+
+    #[test]
+    fn test_for_binary_object() {
+        let binary_object = BinaryObject::from(vec![]); // empty data for demo
+        let _scan_result = binary_object.process().unwrap(); // if unwrap fails, so will test
+    }
+
+    // TODO: test for file
 }
