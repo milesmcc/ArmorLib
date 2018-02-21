@@ -13,7 +13,7 @@ Writing a preprocessor is simple. A preprocessor is any struct that the `Preproc
 
 ### Saving the Preprocessor
 
-Save your preprocessor in the `src/preprocessors` directory under your preprocessor's name. For example, we're going to name this preprocesosr `length`--therefore, we'll want to call the preprocessor's file `src/preprocessors/length.rs`.
+Save your preprocessor in the `src/preprocessors` directory under your preprocessor's name. For example, we're going to name this preprocessor `length`--therefore, we'll want to call the preprocessor's file `src/preprocessors/length.rs`.
 
 ### Necessary Imports
 
