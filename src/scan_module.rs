@@ -8,7 +8,8 @@ use finding::Finding;
 
 /// A trait that defines the necessary functions for `ScanModule`s to implement. To contribute a
 /// new scan module, it will also need to be included in `mod.rs` inside the `scan_modules`
-/// directory.
+/// directory. A scan module is a modular component that finds vulnerabilities to privacy and
+/// security inside `ScanObject`s. The `ScanModule` is the core component of ArmorLib.
 pub trait ScanModule {
     /// Scan the given `scan_object` and return either a vector of `Finding`s or, in case of an
     /// error, an `ArmorlibError`.
