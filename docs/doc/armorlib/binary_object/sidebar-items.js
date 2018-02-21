@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["BinaryObject","A struct that represents an unstructured piece of binary data in the form of a `Vec<u8>`. It also includes the option of having a `String` to designate the path."]]});

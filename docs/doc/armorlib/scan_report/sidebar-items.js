@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ScanReport","A `ScanReport` details the findings of a `ScanModule`, and includes various 'biographical' information about the scan module."]]});

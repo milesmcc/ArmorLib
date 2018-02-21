@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="Source to the Rust file `/Users/miles/Source/ArmorLib/src/finding.rs`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang">
+
+    <title>finding.rs.html -- source</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc source">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content"><pre class="line-numbers"><span id="1"> 1</span>
+<span id="2"> 2</span>
+<span id="3"> 3</span>
+<span id="4"> 4</span>
+<span id="5"> 5</span>
+<span id="6"> 6</span>
+<span id="7"> 7</span>
+<span id="8"> 8</span>
+<span id="9"> 9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+</pre><pre class="rust ">
+<span class="doccomment">//! This module defines the `Finding`, a struct that represents a vulnerability found by a</span>
+<span class="doccomment">//! `ScanModule`.</span>
+
+<span class="doccomment">/// A struct that represents a vulernability found by a `ScanModule`.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Finding</span> {
+    <span class="doccomment">/// The title of the vulenrability. This is human-meaningful, and should make sense on its</span>
+    <span class="doccomment">/// own with only the context of the scan module&#39;s name. This shouldn&#39;t be a complete sentence;</span>
+    <span class="doccomment">/// the knowledge of the scan module should make only a noun necessary; that is, the title</span>
+    <span class="doccomment">/// indicates what the scan module actually found. Therefore, it is not necessary to include</span>
+    <span class="doccomment">/// a verb.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// For example, the title of a `Finding` created by the `strings` scan module might be</span>
+    <span class="doccomment">/// `XOR DECODE LOOP (COMMON TO MICROSOFT MALWARE)`. Because this will be listed explicitly</span>
+    <span class="doccomment">/// as a finding _of_ the Strings scan module, such a title will make sense to the user.</span>
+    <span class="kw">pub</span> <span class="ident">title</span>: <span class="ident">String</span>,
+
+    <span class="doccomment">/// A consistent and unique identifier for the type of finding in screaming snake case.</span>
+    <span class="doccomment">/// All findings of the same type should have the same ID. For example, the ID of a finding</span>
+    <span class="doccomment">/// of the `string` scan module might be `SUSPICIOUS_STRING`.</span>
+    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">String</span>,
+
+    <span class="doccomment">/// A human meaningful description of the finding. This should be between one and two</span>
+    <span class="doccomment">/// full sentences.</span>
+    <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
+
+    <span class="doccomment">/// The `Severity` of the finding. This ranges from `Ok` to `Severe`. See the documentation</span>
+    <span class="doccomment">/// for `Severity` for more in-depth explanations of each possible state.</span>
+    <span class="kw">pub</span> <span class="ident">severity</span>: <span class="ident">Severity</span>,
+}
+
+<span class="doccomment">/// An enum that represents severity. While not necessarily limited to findings, they are commonly</span>
+<span class="doccomment">/// used in the `Finding` struct to designate the severity of a finding related to a privacy</span>
+<span class="doccomment">/// or security vulnerability. The following documentation assumes this use case.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The attached `String` is a description of the potential ramifications of the vulnerability.</span>
+<span class="doccomment">/// For example, this explanation string may be `likely indicates malicious software` or,</span>
+<span class="doccomment">/// alternatively, `not an issue`. This should not be a full sentence.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">Hash</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Severity</span> {
+    <span class="doccomment">/// For use there is no issue.</span>
+    <span class="prelude-val">Ok</span>(<span class="ident">String</span>),
+
+    <span class="doccomment">/// For use when the data has a potential problem, but it is not threatening; an afterthought.</span>
+    <span class="ident">Warn</span>(<span class="ident">String</span>),
+
+    <span class="doccomment">/// For use when the data has a problem which _may_ compromise security or privacy.</span>
+    <span class="ident">Danger</span>(<span class="ident">String</span>),
+
+    <span class="doccomment">/// For use then the data has a problem which will _surely_ compromise security or privacy.</span>
+    <span class="ident">Severe</span>(<span class="ident">String</span>),
+}
+</pre>
+</section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "armorlib";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

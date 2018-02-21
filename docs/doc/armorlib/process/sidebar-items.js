@@ -1,0 +1,1 @@
+initSidebarItems({"trait":[["Process","A trait that allows for the object to be run through the ArmorLib system with only a single call to `.process()`. This is a perfectly valid way of passing objects through ArmorLib, however `coordinator::Process` is also available for more granular control."]]});

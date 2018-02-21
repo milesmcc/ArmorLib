@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["ArmorlibError","An enum that represents an error specific to ArmorLib. This enum implements `std:error::Error`."]]});

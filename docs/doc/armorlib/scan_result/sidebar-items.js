@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ScanResult","A struct that represents a scan result. It is a wrapper for `ScanReport`s created by `ScanModule`s."]]});

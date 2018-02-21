@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["UnicodeWatermarkScanModule","A scan module that implements checking for Unicode zero-width characters, a common technique used for identifying leakers or otherwise invading privacy."]]});

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `ScanModule` trait in crate `armorlib`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, ScanModule">
+
+    <title>armorlib::scan_module::ScanModule - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc trait">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Trait ScanModule</p><div class="block items"><ul><li><a href="#required-methods">Required Methods</a></li><li><a href="#provided-methods">Provided Methods</a></li><li><a href="#implementors">Implementors</a></li></ul></div><p class='location'><a href='../index.html'>armorlib</a>::<wbr><a href='index.html'>scan_module</a></p><script>window.sidebarCurrent = {name: 'ScanModule', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../index.html'>armorlib</a>::<wbr><a href='index.html'>scan_module</a>::<wbr><a class="trait" href=''>ScanModule</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/armorlib/scan_module.rs.html#13-37' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait ScanModule {
+    fn <a href='#tymethod.scan' class='fnname'>scan</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;self, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scan_object: &amp;<a class="struct" href="../../armorlib/scan_object/struct.ScanObject.html" title="struct armorlib::scan_object::ScanObject">ScanObject</a><br>&nbsp;&nbsp;&nbsp;&nbsp;) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../armorlib/finding/struct.Finding.html" title="struct armorlib::finding::Finding">Finding</a>&gt;, <a class="enum" href="../../armorlib/errors/enum.ArmorlibError.html" title="enum armorlib::errors::ArmorlibError">ArmorlibError</a>&gt;;
+<div class='item-spacer'></div>    fn <a href='#tymethod.required_preprocessors' class='fnname'>required_preprocessors</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;;
+<div class='item-spacer'></div>    fn <a href='#tymethod.info' class='fnname'>info</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a>;
+
+    fn <a href='#method.name' class='fnname'>name</a>(&amp;self) -&gt; &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a> { ... }
+<div class='item-spacer'></div>    fn <a href='#method.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a> { ... }
+}</pre><div class='docblock'><p>A trait that defines the necessary functions for <code>ScanModule</code>s to implement. To contribute a
+new scan module, it will also need to be included in <code>mod.rs</code> inside the <code>scan_modules</code>
+directory. A scan module is a modular component that finds vulnerabilities to privacy and
+security inside <code>ScanObject</code>s. The <code>ScanModule</code> is the core component of ArmorLib.</p>
+</div>
+            <h2 id='required-methods' class='small-section-header'>
+              Required Methods<a href='#required-methods' class='anchor'></a>
+            </h2>
+            <div class='methods'>
+        <h3 id='tymethod.scan' class='method'><span id='scan.v' class='invisible'><code>fn <a href='#tymethod.scan' class='fnname'>scan</a>(&amp;self, scan_object: &amp;<a class="struct" href="../../armorlib/scan_object/struct.ScanObject.html" title="struct armorlib::scan_object::ScanObject">ScanObject</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="struct" href="../../armorlib/finding/struct.Finding.html" title="struct armorlib::finding::Finding">Finding</a>&gt;, <a class="enum" href="../../armorlib/errors/enum.ArmorlibError.html" title="enum armorlib::errors::ArmorlibError">ArmorlibError</a>&gt;</code></span></h3><div class='docblock'><p>Scan the given <code>scan_object</code> and return either a vector of <code>Finding</code>s or, in case of an
+error, an <code>ArmorlibError</code>.</p>
+</div><h3 id='tymethod.required_preprocessors' class='method'><span id='required_preprocessors.v' class='invisible'><code>fn <a href='#tymethod.required_preprocessors' class='fnname'>required_preprocessors</a>(&amp;self) -&gt; <a class="struct" href="https://doc.rust-lang.org/nightly/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>&gt;</code></span></h3><div class='docblock'><p>Return a <code>Vec</code> of <code>&amp;&#39;static str</code>s indicating the preprocessors that the scan module relies
+on for running. These names should match the name provided by the processor in its <code>name()</code>
+function.</p>
+</div><h3 id='tymethod.info' class='method'><span id='info.v' class='invisible'><code>fn <a href='#tymethod.info' class='fnname'>info</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code></span></h3><div class='docblock'><p>Returns a tuple containing the name and description of the scan module.</p>
+</div></div>
+            <h2 id='provided-methods' class='small-section-header'>
+              Provided Methods<a href='#provided-methods' class='anchor'></a>
+            </h2>
+            <div class='methods'>
+        <h3 id='method.name' class='method'><span id='name.v' class='invisible'><code>fn <a href='#method.name' class='fnname'>name</a>(&amp;self) -&gt; &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code></span></h3><div class='docblock'><p>Returns a <code>&amp;&#39;static str</code> of the name of the scan module. This information is drawn from
+the information provided by <code>info()</code> in its default implementation.</p>
+</div><h3 id='method.description' class='method'><span id='description.v' class='invisible'><code>fn <a href='#method.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a></code></span></h3><div class='docblock'><p>Returns a <code>&amp;&#39;static str</code> of the description of the scan module. This information is drawn
+from the information provided by <code>info()</code> in its default implementation.</p>
+</div></div>
+        <h2 id='implementors' class='small-section-header'>
+          Implementors<a href='#implementors' class='anchor'></a>
+        </h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><div class='out-of-band'><a class='srclink' href='../../src/armorlib/scan_modules/strings.rs.html#24-61' title='goto source code'>[src]</a></div><code>impl ScanModule for <a class="struct" href="../../armorlib/scan_modules/strings/struct.StringsScanModule.html" title="struct armorlib::scan_modules::strings::StringsScanModule">StringsScanModule</a></code></li>
+<li><div class='out-of-band'><a class='srclink' href='../../src/armorlib/scan_modules/unicode_watermark.rs.html#53-87' title='goto source code'>[src]</a></div><code>impl ScanModule for <a class="struct" href="../../armorlib/scan_modules/unicode_watermark/struct.UnicodeWatermarkScanModule.html" title="struct armorlib::scan_modules::unicode_watermark::UnicodeWatermarkScanModule">UnicodeWatermarkScanModule</a></code></li>
+</ul><script type="text/javascript" async
+                         src="../../implementors/armorlib/scan_module/trait.ScanModule.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "armorlib";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["process","Process the given `BinaryObject` through the ArmorLib system and return a `ScanResult`. All other `process()` functions are simply wrappers for this function."]]});

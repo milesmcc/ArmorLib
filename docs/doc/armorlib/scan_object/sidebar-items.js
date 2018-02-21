@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["ScanObject","A struct that represents a `BinaryObject` (with associated `filetype`) that has been preprocessed and therefore contains `metadata`. This is the object that is passed to `ScanModule`s."]]});
