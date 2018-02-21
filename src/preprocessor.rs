@@ -18,7 +18,7 @@ pub trait Preprocessor {
     /// Returns a tuple of the name and description of the preprocessor. It is important that
     /// the first item of the tuple, the name, does not change once a preprocessor has been
     /// added to the master ArmorLib codebase, as the name is what scan modules rely on to
-    /// ensure that the preprocessor's data is in scope.
+    /// ensure that the preprocessor's data is in scope. The name should be in snake case.
     fn info(&self) -> (&'static str, &'static str);
 
     /// Returns a `&'static str` of the name of the preprocessor. This is the name that the
