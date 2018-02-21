@@ -1,7 +1,7 @@
-/// This preprocessor converts the given binary into a space-separated hex string under the
-/// key 'hex_data'. While this is not a complicated task, the hex preprocessor exists to remove
-/// unnnecessary duplicate code and memory use, as searching the hex string is a common
-/// function.
+//! This preprocessor converts the given binary into a space-separated hex string under the
+//! key 'hex_data'. While this is not a complicated task, the hex preprocessor exists to remove
+//! unnnecessary duplicate code and memory use, as searching the hex string is a common
+//! function.
 use std::collections::HashMap;
 
 use preprocessor::Preprocessor;
