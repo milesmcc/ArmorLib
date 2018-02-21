@@ -4,10 +4,8 @@
 Easily scan files for threats to security and privacy. Available as a Rust crate or as a command-line utility.
 
 ![Using ArmorLib in your own program](docs/img/lib_demo.png)
-_Using ArmorLib in your own Rust program._
 
 ![Using ArmorLib on the command line](docs/img/cli_demo.png)
-_Using ArmorLib on the command line._
 
 ## Installation
 ArmorLib is still in alpha. It's not yet available on Cargo, but you can install from source using `git clone https://github.com/milesmcc/ArmorLib.git`.
