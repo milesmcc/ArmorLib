@@ -190,10 +190,10 @@ Add an import to your preprocessor in the second block of imports like so:
 pub mod length;
 ```
 
-Then, in `fn make_default_scan_modules()`, instantiate your preprocessor in the `vec`:
+Then, in `fn make_default_preprocessors()`, instantiate your preprocessor in the `vec`:
 
 ```rust
-pub fn make_default_scan_modules() -> Vec<Box<ScanModule>> {
+pub fn make_default_preprocessors() -> Vec<Box<Preprocessor>> {
     vec![
         [...]
         Box::new(length::LengthPreprocessor {}),
