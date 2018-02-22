@@ -1,5 +1,5 @@
 <p align="center">
-  <h3 align="center">ArmorLib</h3>
+  <h1 align="center">🔒 ArmorLib 🔒</h1>
 
   <p align="center">
      Easily scan files for threats to security and privacy. A Rust library and command line tool.
