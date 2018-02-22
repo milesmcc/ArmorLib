@@ -30,7 +30,7 @@ SUBCOMMANDS:
 
 ## Library
 
-To learn how to use ArmorLib in your own Rust library, two major resources are offered: `rustdoc` and the library's ['Getting Started' guide](library/GETTING_STARTED.md).
+To learn how to use ArmorLib in your own Rust library, two major resources are offered: `rustdoc` and the library's ['Getting Started' guide](lib/GETTING_STARTED.md).
 
 If you would like to learn more about the high-level structure of ArmorLib, refer to <STRUCTURE.md>.
 
