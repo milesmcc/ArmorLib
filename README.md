@@ -56,7 +56,6 @@ ArmorLib welcomes contributions! Several resources are available to help you in 
 
 ![Using ArmorLib on the command line](docs/img/cli_demo.png)
 
-
 ---
 
 ArmorLib was created by [Miles McCain](https://rmrm.io) as a part of [CSC630: The Open Source Movement](https://nzufelt.github.io/open_source_movement_csc630/) at [Phillips Academy Andover](https://andover.edu). Logo: `secure` by Gregor Cresnar from the Noun Project.
