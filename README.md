@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://armorlib.org/">
-    <img src="/docs/img/ArmorLib-icon.svg" alt="ArmorLib Icon" width=128 />
+    ![ArmorLib icon](/docs/img/ArmorLib-icon.svg | width=128)
   </a>
 
   <h3 align="center">ArmorLib</h3>
