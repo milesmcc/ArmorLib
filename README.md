@@ -26,7 +26,7 @@
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/milesmcc/armorlib.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fmilesmcc%2Farmorlib)
 
 ## Installation
-ArmorLib is still in alpha. It's not yet available on Cargo, but you can install from source using `git clone https://github.com/milesmcc/ArmorLib.git`.
+ArmorLib is still in beta. It's not yet available on Cargo, but you can install from source using `git clone https://github.com/milesmcc/ArmorLib.git`.
 
 ## Getting Started
 Want to jump right in? Check out our getting started guides to get you up to speed on how to use ArmorLib either on the command line or in your own Rust library:
