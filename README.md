@@ -1,6 +1,4 @@
 <p align="center">
-  [![ArmorLib icon](/docs/img/ArmorLib-icon.svg | width=128)](https://armorlib.org)
-
   <h3 align="center">ArmorLib</h3>
 
   <p align="center">
