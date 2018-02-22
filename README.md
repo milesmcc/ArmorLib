@@ -17,18 +17,17 @@
     ·
     <a href="https://armorlib.org/CONTRIBUTING.html">Contributing</a>
   </p>
-
-  <p align="center">
-    [![Build Status](https://travis-ci.org/milesmcc/ArmorLib.svg?branch=master)](https://travis-ci.org/milesmcc/ArmorLib)
-    [![GitHub issues](https://img.shields.io/github/issues/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/issues)
-    [![GitHub forks](https://img.shields.io/github/forks/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/network)
-    [![GitHub stars](https://img.shields.io/github/stars/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/stargazers)
-    [![GitHub license](https://img.shields.io/github/license/milesmcc/armorlib.svg)](https://github.com/milesmcc/ArmorLib/blob/master/LICENSE)
-    [![Twitter](https://img.shields.io/twitter/url/https/github.com/milesmcc/armorlib.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fmilesmcc%2Farmorlib)
-  </p>
 </p>
 
 <br>
+
+## Status
+[![Build status](https://travis-ci.org/milesmcc/ArmorLib.svg?branch=master)](https://travis-ci.org/milesmcc/ArmorLib)
+[![GitHub issues](https://img.shields.io/github/issues/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/issues)
+[![GitHub forks](https://img.shields.io/github/forks/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/network)
+[![GitHub stars](https://img.shields.io/github/stars/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/stargazers)
+[![GitHub license](https://img.shields.io/github/license/milesmcc/armorlib.svg)](https://github.com/milesmcc/ArmorLib/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/milesmcc/armorlib.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fmilesmcc%2Farmorlib)
 
 ## Installation
 ArmorLib is still in alpha. It's not yet available on Cargo, but you can install from source using `git clone https://github.com/milesmcc/ArmorLib.git`.
