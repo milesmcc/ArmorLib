@@ -122,7 +122,7 @@ fn run_scan(matches: &clap::ArgMatches) {
     let result = match results {
         Ok(result) => result,
         Err(error) => {
-            error!("an error occured while processing: {}", error);
+            error!("an error occurred while processing: {}", error);
             return;
         }
     };
