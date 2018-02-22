@@ -12,9 +12,9 @@
     <br>
     <br>
     <a href="https://armorlib.org/docs/">Documentation</a>
-    ·
-    <a href="https://jobs.getbootstrap.com/">CLI Quick Start</a>
-    ·
+    •
+    <a href="https://armorlib.org/docs/cli/GETTING_STARTED.html">CLI Quick Start</a>
+    •
     <a href="https://armorlib.org/CONTRIBUTING.html">Contributing</a>
   </p>
 </p>
