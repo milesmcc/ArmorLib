@@ -1,7 +1,5 @@
 <p align="center">
-  <a href="https://armorlib.org/">
-    ![ArmorLib icon](/docs/img/ArmorLib-icon.svg | width=128)
-  </a>
+  [![ArmorLib icon](/docs/img/ArmorLib-icon.svg | width=128)](https://armorlib.org)
 
   <h3 align="center">ArmorLib</h3>
 
