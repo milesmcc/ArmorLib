@@ -18,6 +18,12 @@ fn suspicious_strings() -> HashMap<&'static str, &'static str> {
     hashmap!{
         "48 8B CD E8 60 FF FF FF 48 FF C3 32 44 1E FF 48 FF CF 88 43 FF" =>
             "xor decode loop for <PolishBankRAT_srservice>",
+
+        "0F B6 42 FF 48 8D 52 FF 30 42 01 FF CF 75 F1" =>
+            "xor decode loop for <PolishBankRAT_fdsvc>",
+
+        "8A 14 3E 8A 1C 01 32 DA 88 1C 01 8B 54 3E 04 40 3B C2 72 EC" =>
+            "common feature for <APT9002> (start block)",
     }
 }
 
