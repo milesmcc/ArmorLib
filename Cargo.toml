@@ -16,6 +16,7 @@ clap = "~2.29.4"
 log = "0.4"
 simplelog = "0.5.0"
 rust-crypto = "0.2.36"
+kamadak-exif = "0.3.0"
 
 [[bin]]
 name = "armorlib"

@@ -12,6 +12,7 @@ use scan_report::ScanReport;
 // List preprocessors here
 pub mod strings;
 pub mod unicode_watermark;
+pub mod exif;
 
 /// Create a `Vec<Box<ScanModule>>` of the core scan modules available to ArmorLib. This will
 /// instantiate the scan modules.
@@ -26,6 +27,7 @@ pub fn make_default_scan_modules() -> Vec<Box<ScanModule>> {
     vec![
         Box::new(strings::StringsScanModule {}),
         Box::new(unicode_watermark::UnicodeWatermarkScanModule {}),
+        Box::new(exif::ExifScanModule {}),
         // ...and add additional preprocessors here
     ]
 }
