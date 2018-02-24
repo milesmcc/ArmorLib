@@ -69,7 +69,7 @@ For more information on how to contribute your own preprocessor, see
 </div><h3 id='tymethod.info' class='method'><span id='info.v' class='invisible'><code>fn <a href='#tymethod.info' class='fnname'>info</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">(</a>&amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, &amp;'static <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">)</a></code></span></h3><div class='docblock'><p>Returns a tuple of the name and description of the preprocessor. It is important that
 the first item of the tuple, the name, does not change once a preprocessor has been
 added to the master ArmorLib codebase, as the name is what scan modules rely on to
-ensure that the preprocessor&#39;s data is in scope.</p>
+ensure that the preprocessor&#39;s data is in scope. The name should be in snake case.</p>
 </div></div>
             <h2 id='provided-methods' class='small-section-header'>
               Provided Methods<a href='#provided-methods' class='anchor'></a>
@@ -87,6 +87,7 @@ is important that this information does not change.</p>
     <li><div class='out-of-band'><a class='srclink' href='../../src/armorlib/preprocessors/filetype.rs.html#106-120' title='goto source code'>[src]</a></div><code>impl Preprocessor for <a class="struct" href="../../armorlib/preprocessors/filetype/struct.FiletypePrepreprocessor.html" title="struct armorlib::preprocessors::filetype::FiletypePrepreprocessor">FiletypePrepreprocessor</a></code></li>
 <li><div class='out-of-band'><a class='srclink' href='../../src/armorlib/preprocessors/text.rs.html#11-30' title='goto source code'>[src]</a></div><code>impl Preprocessor for <a class="struct" href="../../armorlib/preprocessors/text/struct.TextPreprocessor.html" title="struct armorlib::preprocessors::text::TextPreprocessor">TextPreprocessor</a></code></li>
 <li><div class='out-of-band'><a class='srclink' href='../../src/armorlib/preprocessors/hex.rs.html#12-26' title='goto source code'>[src]</a></div><code>impl Preprocessor for <a class="struct" href="../../armorlib/preprocessors/hex/struct.HexPreprocessor.html" title="struct armorlib::preprocessors::hex::HexPreprocessor">HexPreprocessor</a></code></li>
+<li><div class='out-of-band'><a class='srclink' href='../../src/armorlib/preprocessors/hash.rs.html#25-98' title='goto source code'>[src]</a></div><code>impl Preprocessor for <a class="struct" href="../../armorlib/preprocessors/hash/struct.HashPreprocessor.html" title="struct armorlib::preprocessors::hash::HashPreprocessor">HashPreprocessor</a></code></li>
 </ul><script type="text/javascript" async
                          src="../../implementors/armorlib/preprocessor/trait.Preprocessor.js">
                  </script></section>

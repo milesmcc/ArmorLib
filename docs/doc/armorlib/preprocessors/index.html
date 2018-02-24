@@ -48,7 +48,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../../src/armorlib/preprocessors/mod.rs.html#1-61' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../../src/armorlib/preprocessors/mod.rs.html#1-63' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This module defines and manages the default preprocessors available to ArmorLib.</p>
 
 <p>To contribute a new <code>Preprocessor</code>, you must:
@@ -64,10 +64,33 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class="mod" href="hash/index.html"
+                                  title='mod armorlib::preprocessors::hash'>hash</a></td>
+                           <td class='docblock-short'>
+                                <p>This module defines the <code>hash</code> preprocessor which makes hash information available to
+scan modules. The following hashes are currently supported:
+* <code>md5</code>
+* <code>sha1</code>
+* <code>sha256</code>
+* <code>sha512</code>
+* <code>sha224</code>
+* <code>sha384</code>
+* <code>sha3-256</code>
+* <code>sha3-512</code>
+* <code>sha3-224</code>
+* <code>sha3-384</code>
+The hashes are available under the metadata path <code>hash/name</code>, and the returned hash will be
+in lower case.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class="mod" href="hex/index.html"
                                   title='mod armorlib::preprocessors::hex'>hex</a></td>
                            <td class='docblock-short'>
-                                
+                                <p>This preprocessor converts the given binary into a space-separated hex string under the
+key &#39;hex_data&#39;. While this is not a complicated task, the hex preprocessor exists to remove
+unnnecessary duplicate code and memory use, as searching the hex string is a common
+function.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>

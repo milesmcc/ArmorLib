@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `/Users/miles/Source/ArmorLib/src/preprocessor.rs`.">
+    <meta name="description" content="Source to the Rust file `src/preprocessor.rs`.">
     <meta name="keywords" content="rust, rustlang, rust-lang">
 
     <title>preprocessor.rs.html -- source</title>
@@ -99,7 +99,7 @@
     <span class="doccomment">/// Returns a tuple of the name and description of the preprocessor. It is important that</span>
     <span class="doccomment">/// the first item of the tuple, the name, does not change once a preprocessor has been</span>
     <span class="doccomment">/// added to the master ArmorLib codebase, as the name is what scan modules rely on to</span>
-    <span class="doccomment">/// ensure that the preprocessor&#39;s data is in scope.</span>
+    <span class="doccomment">/// ensure that the preprocessor&#39;s data is in scope. The name should be in snake case.</span>
     <span class="kw">fn</span> <span class="ident">info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> (<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>);
 
     <span class="doccomment">/// Returns a `&amp;&#39;static str` of the name of the preprocessor. This is the name that the</span>
