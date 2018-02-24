@@ -23,9 +23,9 @@ fn watermark_chars() -> HashMap<char, &'static str> {
     }
 }
 
-/// Gets the surrounding 20 characters on either side of the given index, truncating if at the end or
-/// beginning of the string. Replaces the exact character with "_[HERE]_".
-fn surrounding_text(i: usize, text: &str) -> String  {
+/// Gets the surrounding 20 characters on either side of the given index, truncating if at the end
+/// or beginning of the string. Replaces the exact character with "_[HERE]_".
+fn surrounding_text(i: usize, text: &str) -> String {
     let mut surround = String::new();
     let mut is_in_range = false;
     for (j, character) in text.char_indices() {
@@ -60,14 +60,18 @@ impl ScanModule for UnicodeWatermarkScanModule {
         let watermarks = watermark_chars();
         for (i, character) in text.char_indices() {
             match watermarks.get(&character) {
-                Some(warn_text) =>  {
+                Some(warn_text) => {
                     findings.push(Finding {
                         title: String::from(*warn_text),
-                        description: format!("found suspicious character at index {}: \"{}\"",
-                                             i, surrounding_text(i, text.as_str())
+                        description: format!(
+                            "found suspicious character at index {}: \"{}\"",
+                            i,
+                            surrounding_text(i, text.as_str())
                         ),
                         id: String::from("UNICODE_WATERMARK"),
-                        severity: Severity::Warn(String::from("possible attempt to watermark data")),
+                        severity: Severity::Warn(String::from(
+                            "possible attempt to watermark data",
+                        )),
                     });
                 }
                 _ => {}
@@ -78,7 +82,10 @@ impl ScanModule for UnicodeWatermarkScanModule {
     }
 
     fn info(&self) -> (&'static str, &'static str) {
-        ("unicode_watermark", "searches for attempts to watermark text using unusual Unicode")
+        (
+            "unicode_watermark",
+            "searches for attempts to watermark text using unusual Unicode",
+        )
     }
 
     fn required_preprocessors(&self) -> Vec<&'static str> {
@@ -100,25 +107,35 @@ mod tests {
             vec![Box::new(UnicodeWatermarkScanModule)],
             Vec::new(),
             BinaryObject::from(sus_string.as_bytes().to_vec()),
-            None
+            None,
         ).unwrap();
         let scan_report = scan_result.reports.pop().unwrap();
-        assert_eq!(scan_report.module_info.0.as_str(),
-                   "unicode_watermark");
-        assert_eq!(scan_report.module_info.1.as_str(),
-                   "searches for attempts to watermark text using unusual Unicode");
+        assert_eq!(scan_report.module_info.0.as_str(), "unicode_watermark");
+        assert_eq!(
+            scan_report.module_info.1.as_str(),
+            "searches for attempts to watermark text using unusual Unicode"
+        );
         let findings = scan_report.findings.unwrap();
         let finding1 = findings.get(0).unwrap();
         let finding2 = findings.get(1).unwrap();
-        assert_eq!(finding1.title,
-                   "Unicode zero-width no-break space: most likely suspicious");
-        assert_eq!(finding2.title,
-                   "Unicode zero-width space: most likely suspicious");
+        assert_eq!(
+            finding1.title,
+            "Unicode zero-width no-break space: most likely suspicious"
+        );
+        assert_eq!(
+            finding2.title,
+            "Unicode zero-width space: most likely suspicious"
+        );
         assert_eq!(finding1.id, "UNICODE_WATERMARK");
         assert_eq!(finding1.severity, finding2.severity);
-        assert_eq!(finding1.severity, Severity::Warn(String::from("possible attempt to watermark data")));
-        assert_eq!(finding1.description,
-                   "found suspicious character at index 3: \"The_[HERE]_ nuclear\u{200b} launc\"");
+        assert_eq!(
+            finding1.severity,
+            Severity::Warn(String::from("possible attempt to watermark data"))
+        );
+        assert_eq!(
+            finding1.description,
+            "found suspicious character at index 3: \"The_[HERE]_ nuclear\u{200b} launc\""
+        );
         assert_eq!(finding2.description,
                    "found suspicious character at index 14: \"The\u{feff} nuclear_[HERE]_ launch codes are\"");
     }
@@ -130,26 +147,38 @@ mod tests {
             vec![Box::new(UnicodeWatermarkScanModule)],
             Vec::new(),
             BinaryObject::from(sus_string.as_bytes().to_vec()),
-            None
+            None,
         ).unwrap();
         let scan_report = scan_result.reports.pop().unwrap();
-        assert_eq!(scan_report.module_info.0.as_str(),
-                   "unicode_watermark");
-        assert_eq!(scan_report.module_info.1.as_str(),
-                   "searches for attempts to watermark text using unusual Unicode");
+        assert_eq!(scan_report.module_info.0.as_str(), "unicode_watermark");
+        assert_eq!(
+            scan_report.module_info.1.as_str(),
+            "searches for attempts to watermark text using unusual Unicode"
+        );
         let findings = scan_report.findings.unwrap();
         let finding1 = findings.get(0).unwrap();
         let finding2 = findings.get(1).unwrap();
-        assert_eq!(finding1.title,
-                   "Unicode zero-width non-joiner: could be OK, possibly suspicious");
-        assert_eq!(finding2.title,
-                   "Unicode zero-width joiner: could be OK, possibly suspicious");
+        assert_eq!(
+            finding1.title,
+            "Unicode zero-width non-joiner: could be OK, possibly suspicious"
+        );
+        assert_eq!(
+            finding2.title,
+            "Unicode zero-width joiner: could be OK, possibly suspicious"
+        );
         assert_eq!(finding1.id, "UNICODE_WATERMARK");
         assert_eq!(finding1.severity, finding2.severity);
-        assert_eq!(finding1.severity, Severity::Warn(String::from("possible attempt to watermark data")));
-        assert_eq!(finding1.description,
-                   "found suspicious character at index 3: \"The_[HERE]_ nuclear launch c\"");
-        assert_eq!(finding2.description,
-                   "found suspicious character at index 42: \"codes are 0000, 0001_[HERE]_, and 1234\"");
+        assert_eq!(
+            finding1.severity,
+            Severity::Warn(String::from("possible attempt to watermark data"))
+        );
+        assert_eq!(
+            finding1.description,
+            "found suspicious character at index 3: \"The_[HERE]_ nuclear launch c\""
+        );
+        assert_eq!(
+            finding2.description,
+            "found suspicious character at index 42: \"codes are 0000, 0001_[HERE]_, and 1234\""
+        );
     }
 }
