@@ -7,8 +7,8 @@
 
 #[macro_use]
 extern crate maplit;
-
 extern crate aho_corasick;
+extern crate crypto;
 
 pub mod coordinator;
 pub mod binary_object;

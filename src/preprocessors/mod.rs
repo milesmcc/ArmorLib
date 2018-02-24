@@ -13,6 +13,7 @@ use preprocessor::Preprocessor;
 pub mod filetype;
 pub mod text;
 pub mod hex;
+pub mod hash;
 
 /// Create a `Vec<Box<Preprocessor>>` of the core preprocessors available to ArmorLib. This will
 /// instantiate the preprocessors.
@@ -28,6 +29,7 @@ pub fn make_default_preprocessors() -> Vec<Box<Preprocessor>> {
         Box::new(filetype::FiletypePrepreprocessor {}),
         Box::new(text::TextPreprocessor {}),
         Box::new(hex::HexPreprocessor {}),
+        Box::new(hash::HashPreprocessor {}),
         // ...and add additional default preprocessors here
     ]
 }
