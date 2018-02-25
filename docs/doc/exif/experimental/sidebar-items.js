@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Writer","The `Writer` struct is used to encode and write Exif data."]]});
