@@ -70,7 +70,7 @@ $ armorlib scan ~/file.dat
 03:49:09 [INFO]     (had no findings)
 ```
 
-(You may receive slightly different results depending on the scan modules available on your system.)
+(You may receive slightly different results depending on the scan modules available on your system and the type of file you scan.)
 
 ### Viewing the available preprocessors
 To view the available preprocessors, run `armorlib preprocessors`:
