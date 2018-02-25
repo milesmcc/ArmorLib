@@ -48,7 +48,38 @@ pub fn make_default_scan_modules() -> Vec<Box<ScanModule>> {
 pub fn process(scan_modules: Vec<Box<ScanModule>>, scan_object: &ScanObject) -> ScanResult {
     let mut scan_reports: Vec<ScanReport> = Vec::new();
 
+    let mut skipped_scan_modules: Vec<&'static str> = Vec::new();
+
     for sm in scan_modules {
+        // do not run scan modules that have not subscribed to the filetype
+        if sm.subscribed_filetypes().is_some() {
+            let filetypes: Vec<String> = sm.subscribed_filetypes()
+                .unwrap()
+                .iter()
+                .map(|f| String::from(*f))
+                .collect();
+            let mut found = false;
+            if &scan_object.filetype.is_some() == &true {
+                let given_filetype: &String = match &scan_object.filetype.as_ref() {
+                    &Some(filetype) => &filetype,
+                    &None => unreachable!(),
+                };
+                if filetypes.contains(&given_filetype) {
+                    found = true;
+                }
+            }
+            for filetype in scan_object.detected_filetypes.as_slice() {
+                if filetypes.contains(&filetype) {
+                    found = true;
+                }
+            }
+
+            if !found {
+                skipped_scan_modules.push(sm.name());
+                continue;
+            }
+        }
+
         let report: ScanReport = match sm.scan(scan_object) {
             Ok(findings) => ScanReport {
                 error: None,

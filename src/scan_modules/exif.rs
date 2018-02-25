@@ -119,4 +119,8 @@ impl ScanModule for ExifScanModule {
     fn required_preprocessors(&self) -> Vec<&'static str> {
         vec!["filetype"]
     }
+
+    fn subscribed_filetypes(&self) -> Option<Vec<&'static str>> {
+        Some(vec!["tiff", "jpg"])
+    }
 }

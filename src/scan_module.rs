@@ -35,13 +35,13 @@ pub trait ScanModule {
         return self.info().1;
     }
 
-    /// Returns an `Option<&[&'static str]>` of the filetypes that the scan module is subscribed
+    /// Returns an `Option<Vec<&'static str>>` of the filetypes that the scan module is subscribed
     /// to. If a scan module subscribes to a filetype, it will only be run if the data is detected
     /// to be of any of the subscribed filetypes. If a scan module's `subscribed_filetypes()`
     /// function returns `None` (default), it will be run for every filetype.
     ///
     /// These filetypes must match those defined in `preprocessors/filetype`.
-    fn subscribed_filetypes(&self) -> Option<&[&'static str]> {
+    fn subscribed_filetypes(&self) -> Option<Vec<&'static str>> {
         return None;
     }
 }
