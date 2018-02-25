@@ -1,5 +1,7 @@
 use std::collections::HashMap;
 use std::char;
+use std::u16;
+use std::u32;
 
 use preprocessor::Preprocessor;
 use binary_object::BinaryObject;
@@ -59,18 +61,23 @@ impl Encoding {
             return Encoding::NoData;
         }
 
-        if length > &4 && data[0..4] == [0xFF_u8, 0xFE_u8, 0x00_u8, 0x00_u8] {
+        if length > &4_usize && data[0..4] == [0xFF_u8, 0xFE_u8, 0x00_u8, 0x00_u8] {
             // could also do % 4 check, but assumes files aren't corrupted
             return Encoding::Utf32;
-        } else if length > &2 && data[0..2] == [0xFF_u8, 0xFE_u8] {
+        } else if length > &2_usize && data[0..2] == [0xFF_u8, 0xFE_u8] {
             // could also do % 2 check, see above
             return Encoding::Utf16;
-        } else if length > &3 && data[0..3] == [0xEF_u8, 0xBB_u8, 0xBF_u8] {
+        } else if length > &3_usize && data[0..3] == [0xEF_u8, 0xBB_u8, 0xBF_u8] {
             return Encoding::Utf8;
         }
 
-        if binary_object.data.iter().all(|x| *x < 128_u8) {
+        if data.iter().all(|x| *x < 128_u8) {
             return Encoding::Ascii;
+        }
+
+        // in case the magic number for utf8 is not present
+        if String::from_utf8(data.to_vec()).is_ok() {
+            return Encoding::Utf8;
         }
 
         Encoding::Binary
@@ -118,7 +125,7 @@ impl Encoding {
                     );
                     match char::from_u32(u) {
                         Some(character) => string.push(character),
-                        None => string.push('�'),
+                        None => {},
                     }
                 }
                 string

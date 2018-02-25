@@ -53,6 +53,11 @@ fn surrounding_text(i: usize, text: &str) -> String {
 impl ScanModule for UnicodeWatermarkScanModule {
     /// Returns locations of Unicode zero-width strings.
     fn scan(&self, scan_object: &ScanObject) -> Result<Vec<Finding>, ArmorlibError> {
+        let encoding: &String = scan_object.get_metadata("text/encoding")?;
+        if encoding == &String::from("binary") {
+            return Ok(vec!()); // no text to watermark
+        }
+
         let mut findings = Vec::new();
 
         // get text
