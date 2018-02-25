@@ -55,4 +55,4 @@ for report in result.reports {
 }
 ```
 
-If you'd like to dive deeper into ArmorLib's API, read the `rustdoc` at [armorlib.org](https://armorlib.org/docs/doc/armorlib/).
+If you'd like to dive deeper into ArmorLib's API, read the `rustdoc` at [docs.rs](https://docs.rs/armorlib/).

@@ -38,7 +38,7 @@ If you would like to learn more about the high-level structure of ArmorLib, refe
 
 The `rustdoc` is an interactive documentation website that, if you're familiar with Rust, you'll be used to. It documents every single public function, struct, enum, and field of ArmorLib and provides dozens of examples to work with. The `rustdoc` is perfect for exploring the ArmorLib source and learning how to interact with its internals. If you're looking for a step-by-step guide to use ArmorLib in your own project, consider reading the guide below.
 
-View the `rustdoc` [here](doc/armorlib/index.html).
+View the `rustdoc` [here](https://docs.rs/armorlib/).
 
 ### Getting Started Guide
 
