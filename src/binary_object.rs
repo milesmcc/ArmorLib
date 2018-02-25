@@ -25,6 +25,7 @@ impl From<Vec<u8>> for BinaryObject {
     }
 }
 
+#[allow(unused_must_use)] // see issue #22
 impl From<File> for BinaryObject {
     fn from(mut file: File) -> BinaryObject {
         let mut data_vec: Vec<u8> = Vec::new();
