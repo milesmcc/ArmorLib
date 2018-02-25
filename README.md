@@ -16,6 +16,7 @@
 </p>
 
 ## Status
+[![Crates.io](https://img.shields.io/crates/v/armorlib.svg)](https://crates.io/crates/armorlib)
 [![Build status](https://travis-ci.org/milesmcc/ArmorLib.svg?branch=master)](https://travis-ci.org/milesmcc/ArmorLib)
 [![GitHub issues](https://img.shields.io/github/issues/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/issues)
 [![GitHub forks](https://img.shields.io/github/forks/milesmcc/armorlib.svg)](https://github.com/milesmcc/armorlib/network)
