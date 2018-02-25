@@ -226,6 +226,21 @@ impl ScanObject for UnluckyLengthScanModule {
 
 It's simple!
 
+### Subscribing to Filetypes
+Often, scan modules are written for certain filetypes. For example, the `exif` scan module only cares about scanning `tiff` or `jpg` files. To improve performance and make the lives of scan module authors just a little bit easier, ArmorLib allows for scan modules to _subscribe_ to filetypes. By default, a scan module is subscribed to all filetypes.
+
+When a scan module subscribes to a filetype, it will only run if the data being scanned _matches_ one of those filetypes. A piece of data matches a subscribed filetype if the `filetype` preprocessor detects that the data is of a particular filetype (determined using [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming))), or if the extension of the file matches a subscribed filetype.
+
+To subscribe to filetypes, your scan module must implement `fn subscribed_filetypes(&self) -> Option<Vec<&'static str>>`. Returning `None` subscribes to all filetypes, while returning `Some(vec!["html", "css", "js"])`, for example, would subscribe to files of the type `html`, `css`, and `js`.
+
+The `exif` scan module subscribes to `jpg` and `tiff`. Here's what its code looks like:
+
+```rust
+fn subscribed_filetypes(&self) -> Option<Vec<&'static str>> {
+    Some(vec!["tiff", "jpg"])
+}
+```
+
 ### Writing Tests
 
 We'll want to test our scan module to make sure everything works correctly. We'll do that by writing a simple `mod tests`—but that part will be left to you.
