@@ -2,8 +2,8 @@
 //! scanned for threats to security and privacy. It does this by offering several modular
 //! 'scan modules' that each search for a specific type of vulnerability.
 //!
-//! For information on how to use ArmorLib, see `docs/GETTING_STARTED.md`, or browse this
-//! `rustdoc`.
+//! For information on how to use ArmorLib, see [armorlib.org](https://armorlib.org), or browse
+//! this `rustdoc`.
 
 #[macro_use]
 extern crate maplit;
