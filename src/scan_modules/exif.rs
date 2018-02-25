@@ -45,7 +45,6 @@ impl ScanModule for ExifScanModule {
                 if format!("{}", value.display_as(*tag))
                     == format!("{}", tag.default_value().unwrap().display_as(*tag))
                 {
-                    println!("default value found");
                     continue; // has default value, no need to worry
                 }
             }
