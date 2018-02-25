@@ -24,9 +24,9 @@ use scan_modules;
 /// normal core library preprocessors, a preprocessor will only run if it is required by some scan
 /// module.
 /// * `binary_object`: the `BinaryObject` that will be scanned by ArmorLib.
-/// * `filetype`: an `Option<String>` of the filetype of the data, with preceding `.`
-/// (e.g. `.pdf`). Because this information may not be known, there is a possibility of
-/// absence that is represented by the wrapping `Option`.
+/// * `filetype`: an `Option<String>` of the filetype of the data, without the preceding `.`
+/// (e.g. `file.pdf` -> `pdf`). Because this information may not be known, there is a possibility
+/// of absence that is represented by the wrapping `Option`.
 ///
 /// # Examples
 ///
@@ -71,7 +71,10 @@ pub fn process(
     available_preprocessors.append(&mut preprocessors::make_default_preprocessors());
 
     for preprocessor in available_preprocessors {
-        if required_preprocessors.contains(&String::from(preprocessor.name())) {
+        if required_preprocessors.contains(&String::from(preprocessor.name()))
+            || preprocessor.name() == &String::from("filetype")
+        // filetype must always be run
+        {
             preprocessors_to_be_run.push(preprocessor);
         }
     }
@@ -79,10 +82,28 @@ pub fn process(
     // run the preprocessors
     let object_metadata = preprocessors::process(preprocessors_to_be_run, &binary_object);
 
+    let mut filetypes: Vec<String> = Vec::new();
+    {
+        // establish _real_ filetypes
+        let file_keys = match (&object_metadata).get("filetype") {
+            Some(hashmap) => hashmap.keys(),
+            None => {
+                return Err(ArmorlibError::MissingPreprocessor(String::from(
+                    "cannot find critical `filetype` preprocessor",
+                )))
+            }
+        };
+
+        for ft in file_keys {
+            filetypes.push(ft.clone());
+        }
+    }
+
     // create scan object
     let scan_object: ScanObject = ScanObject {
         binary_object: binary_object,
         filetype: filetype,
+        detected_filetypes: filetypes,
         metadata: object_metadata,
     };
 

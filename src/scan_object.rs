@@ -32,6 +32,10 @@ pub struct ScanObject {
     /// possibility of absence.
     pub filetype: Option<String>,
 
+    /// The filetypes of the data, as detected by the special `filetype` preprocessor. Multiple
+    /// filetypes may exist, because, for example, a `txt` file may also be a `yaml` file.
+    pub detected_filetypes: Vec<String>,
+
     /// The BinaryObject that the ScanObject contains.
     pub binary_object: BinaryObject,
 }
@@ -59,6 +63,7 @@ impl ScanObject {
     /// # let scan_object = ScanObject {
     /// #     metadata: metadata,
     /// #     filetype: None,
+    /// #     detected_filetypes: vec![],
     /// #     binary_object: BinaryObject::from(vec![]),
     /// # };
     /// // given the scan object with the name `scan_object`, we can easily access its metadata:
@@ -122,6 +127,7 @@ mod tests {
         let scan_object = ScanObject {
             metadata: metadata,
             filetype: None,
+            detected_filetypes: vec![],
             binary_object: BinaryObject::from(vec![]),
         };
         assert_eq!(
