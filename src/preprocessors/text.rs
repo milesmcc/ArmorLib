@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 use std::char;
 use std::u16;
-use std::u32;
 
 use preprocessor::Preprocessor;
 use binary_object::BinaryObject;
